@@ -1,7 +1,7 @@
 # CSE455 Final Project Proposal: Flower Classification on TPU
 Date: 3/1/2022
 
-## Group Mamber
+## Group Members
 Diana Dai, Alisa Shi
 
 ## Project Description
