@@ -4,8 +4,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
-        <meta name="author" content="diana dai" />
-        <title>Clean Blog - Start Bootstrap Theme</title>
+        <meta name="author" content="Diana Dai" />
+        <title>Petals to the Metal - Flower Classification on TPU</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -20,18 +20,18 @@
     <body>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
     	<script>hljs.highlightAll();</script>
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
+        <!-- Page Header -->
+        <header class="masthead" style="background-image: url('assets/img/flower1.jpg')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>Man must explore, and this is exploration at its greatest</h1>
-                            <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
+                            <h1>Petals to the Metal</h1>
+                            <h2 class="subheading">Flower Classification on TPU</h2>
                             <span class="meta">
-                                Posted by
-                                <a href="#!">Start Bootstrap</a>
-                                on August 24, 2021
+                                Written by
+                                <a href="#!">Diana Dai, Alisa Shi</a>
+                                on Mar 14, 2022
                             </span>
                         </div>
                     </div>
@@ -43,45 +43,233 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-10 col-xl-10">
-                        <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
-                        <p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
-                        <p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
-                        <p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
-                        <p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
-                        <h2 class="section-heading">The Final Frontier</h2>
-                        <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
-                        <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
-                        <blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
-                        <p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
-                        <h2 class="section-heading">Reaching for the Stars</h2>
-                        <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
-                        <a href="#!"><img class="img-fluid" src="assets/img/post-sample-image.jpg" alt="..." /></a>
-                        <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
-                        <p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
-                        <p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+                        <!-- Summary -->
+                        <h1>Summary</h1>
                         <p>
-                            Placeholder text by
-                            <a href="http://spaceipsum.com/">Space Ipsum</a>
-                            &middot; Images by
-                            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>
+                            In this project, we competed in a <a href="https://www.kaggle.com/c/tpu-getting-started/overview">Kaggle competition</a> to develop a classifier that classifies 104 types of flowers. We started out with provided code using a convolution neural net (CNN) architecture called VGG16 to train the model with transfer training, and deployed seven different big modifications to increase the performance of the classifier:
                         </p>
-						<pre><code class="language-python">
-with strategy.scope():
-    pretrained_model = tf.keras.applications.VGG16(
-        weights='imagenet',
-        include_top=False ,
-        input_shape=[*IMAGE_SIZE, 3]
-    )
-    pretrained_model.trainable = False
+                        <ul>
+                            <li>Modification 1: Train with other models</li>
+                            <li>Modification 2: Calculate weights</li>
+                            <li>Modification 3: Change optimizers </li>
+                            <li>Modification 4: Mix models</li>
+                            <li>Modification 5: Augment images</li>
+                            <li>Modification 6: Increase EPOCHS</li>
+                            <li>Modification 7: Incorporate external data</li>
+                        </ul>
+                        <p>
+                            We compare the models based on their f1-score, precision and recall on their predictions on the validation set. Our best model is a combination of Xception and EfficientNet architecture, with extra training data and images augmented with random blocking. That places us in 25th on the leaderboard with a score of 0.95901, which improved a lot compared to the starter code, which has a score of 0.04083. We also discuss the challenges and takeaways of the project.
+                        </p>
+                        <p>
+                            Source code for our best model is in this <a href="https://github.com/MoSummers-dy/cse455-final-project/blob/main/iter7-extra-training.ipynb">Jupyter Notebook</a> which is also available on Kaggle Notebook <a href="https://www.kaggle.com/mosummers/petals-to-the-metal-cv-project">here</a>.
+                            You can check out different versions of the notebook for various modifications. A lot of intermediate epoch records and experiments are removed from the blog, but check <a href="https://docs.google.com/document/d/1W8seR7kPzklhTNjTv2NAMuiUA9yCf88763LlOnq8Dw8/edit?usp=sharing">this</a> out if you are interested. 
+                        </p>
+                        <p>For a video summary of this project, please see&nbsp;below. A detailed description is also available&nbsp;<a href="https://youtu.be/4WblQduKdqE">here</a>.&nbsp;</p>
+                        <p>[Insert YouTube Video Frame]</p>
 
-    model = tf.keras.Sequential([
-        # To a base pretrained on ImageNet to extract features from images...
-        pretrained_model,
-        # ... attach a new head to act as a classifier.
-        tf.keras.layers.GlobalAveragePooling2D(),
-        tf.keras.layers.Dense(len(CLASSES), activation='softmax')
-    ])
+                        <!-- Problem, Motivation, Setup -->
+                        <h1>Problem, Motivation, and Setup</h1>
+                        <p>This project is from a&nbsp;<a href="https://www.kaggle.com/c/tpu-getting-started">Petals to the Metal</a> Kaggle competition. There are a lot of species in nature, for over 5,000 species of mammals, 10,000 species of birds, and 30,000 species of fish. How about some plants? Well, we have over 400,000 different types of flowers! Incredible! For this competition, each team is challenged to build a machine learning model that identifies the type of flowers in a dataset of images. The good news is, we will have just over 100 types, so the work is easier.</p>
+                        <p>Our project builds upon&nbsp;<a href="https://www.kaggle.com/ryanholbrook/create-your-first-submission">Ryan&apos;s notebook</a> on how to build an image classifier in Keras and train it on Tensor Processing Unit (TPU). We then expand from there to train with other models and techniques with ideas of our own.</p>
+                        <p>A TPU has eight different cores and each of these cores acts as its own accelerator. A TPU is a sort of like having eight GPUs in one machine. We used TPUs for this challenge because these are equipped with 128 GB high-speed memory, so even with 512x512 pixels input images (provided in the dataset as well), TPU can handle these properly. Read more about TPU&nbsp;<a href="https://www.kaggle.com/docs/tpu">here</a>.</p>
+                        
+                        <!-- Dataset -->
+                        <h1>Dataset</h1>
+                        <p>The Kaggle competition provides&nbsp;<a href="https://www.kaggle.com/c/tpu-getting-started/data">data</a> in&nbsp;<a href="https://www.kaggle.com/ryanholbrook/tfrecords-basics">TFRecords</a> format, which fits well into TPUs. We have:</p>
+                        <ul>
+                            <li>train/*.tfrec - training samples, including labels.
+                            </li>
+                            <li>val/*.tfrec - pre-split training samples w/ labels intended to help with checking your model&apos;s performance on TPU. The split was stratified across labels.
+                            </li>
+                            <li>test/*.tfrec - samples without labels - you&apos;ll be predicting what classes of flowers these fall into.
+                            </li>
+                            <li>sample_submission.csv - a sample submission file in the correct format
+                            </li>
+                        </ul>
+                        <p>In one of the modifications, we add extra data to the training dataset to better train our classifier. More on it in the next section.&nbsp;
+                        <a href="#!"><img class="img-fluid" src="assets/img/mod0-starter/flowers.png" alt="flowers" /></a>
+                        <span class="caption text-muted">Flowers from the Training Dataset</span>
+                        
+                        <!-- Techniques & Evaluations  -->
+                        <h1>Techniques and Evaluations</h1>
+                        <p>Now we&apos;re ready to create a neural network for classifying images! We&apos;ll use what&apos;s known as transfer learning. With transfer learning, you reuse part of a pre-trained model to get a head-start on a new dataset.&nbsp;</p>
+                        <p>For the starter code, it uses a model called VGG16 pre-trained on ImageNet). However, the accuracy on the validation set is only about 22%, which is far below what we want. Let us try other models to make it better.</p>
+                        
+                        <!-- Modification 1 -->
+                        <h2>🔔 Modification 1: Train with Other Models</h2>
+                        <p>We want to experiment with other models included with Keras.</p>
+                        <p>We start simple. We stick with VGG16 for now, but we would like to change the trainable attribute so that it unfreezes the layers and keep changing the values. Read more&nbsp;<a href="https://www.tensorflow.org/guide/keras/transfer_learning">here</a>. After training, we do see slight improvements and the accuracy of the validation set goes from 22% to 26%. We decided to move on with Trainable=True for now with other models.</p>
+                        <p>We then continue to train with VGG19, Xception, DenseNet201, EfficientNetB7, InceptionV3, MobileNetV3Small, NASNetMobile and ResNet152V2.&nbsp;</p>
+                        <p>Some of these models perform worse than VGG16, such as VGG 19 (15.17% accuracy on validation set), while others do have a big jump. Let&apos;s do a quick comparisons for models that perform with an accuracy higher than 85% on validation set:</p>
+                        <ul>
+                            <li>Xception(): f1 = 0.936, precision = 0.944, recall = 0.932</li>
+                            <li>DenseNet201(): f1 = 0.942, precision = 0.944, recall = 0.944</li>
+                            <li>EfficientNetB7() with weights = &apos;imagenet&apos;: f1 = 0.895, precision = 0.901, recall = 0.895</li>
+                            <li>InceptionV3(): f1 = 0.925, precision = 0.930, recall = 0.926</li>
+                            <li>RasNet152V2(): f1 = 0.898, precision = 0.912, recall = 0.891</li>
+                            <li>(in second modification found) EfficientNetB7() with weights = &apos;noisy-student&apos;: f1 = 0.949, 0.948, 0.955</li>
+                        </ul>
+                        <p>One thing to note is that when we were experimenting with our ⚖️ Modification 2, we came across a blog, which says how the performance can be improved if we changed the value assigned to the weights attribute. Why not give it a try? Interestingly, the Keras library does not allow us to modify the weights to be &apos;noisy-student&apos;. So we need to import efficientNet and go from there. The accuracy improved a lot (from 90% to 95%) by changing the weights from &lsquo;imagenet&rsquo; to &lsquo;noisy-student&rsquo;! It seems like noisy-student is a better weight to be used for EfficientNetB7(). We will use it from now on.</p>
+                        
+                        <!-- Modification 2 -->
+                        <h2>⚖️ Modification 2: Calculate Weights</h2>
+                        <p>Inside model.fit(), there is an attribute called class_weight. According to Keras&nbsp;<a href="https://keras.io/api/models/sequential/">doc</a>: this attribute is an &quot;optional dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only)&quot;. It is set up for<a href="https://www.tensorflow.org/tutorials/structured_data/imbalanced_data">&nbsp;classification on imbalanced data</a>.</p>
+                        <p>The big idea is that since we do not have many samples for those less represented classes, we should have the classifer weight heavily on those few examples that are available. In other words, we want the models to &quot;pay more attention&quot; to example from an under-represented class.</p>
+                        <p>Maybe we can customize this attribute? Let us start by calculating the percentage of each class presented in the training dataset. Here is a graph that show the different weights &ndash; an inverse of percentage:</p>
+                        <a href="#!"><img class="img-fluid" src="assets/img/mod2/classWeights.png" alt="class weights" /></a>
+                        <span class="caption text-muted">Class Weights (inverse of %)</span>
+                        <p>We pick the models that perform pretty well in the last round: Xception(), DenseNet201(), EfficientNetB7(), Inception2(), and RasNet152V2(), and train these with class weights.</p>
+						<pre><code class="language-python">
+history = model.fit(
+    ds_train,
+    validation_data=ds_valid,
+    epochs=EPOCHS,
+    steps_per_epoch=STEPS_PER_EPOCH,
+    callbacks=[lr_callback],
+    # modification 2: class weights (abandoned because no improvements)
+    class_weight = training_class_weights
+    )
 						</code></pre>
+                        <p>Another quick comparison on f1, precision, and recall (before -&gt; after applying class weights):</p>
+                        <ul>
+                            <li>Xception(): f1 = 0.936 -&gt; 0.941, precision = 0.944 -&gt; 0.940, recall = 0.932 -&gt; 0.946</li>
+                            <li>DenseNet201(): f1 = 0.942 -&gt; 0.935, precision = 0.944 -&gt; 0.931, recall = 0.944 -&gt; 0.944</li>
+                            <li>EfficientNetB7() with weights = &apos;imagenet&apos;: f1 = 0.895 -&gt; 0.901, precision = 0.901 -&gt; 0.894, recall = 0.895 -&gt; 0.914</li>
+                            <li>InceptionV3(): f1 = 0.925 -&gt; 0.907, precision = 0.930 -&gt; 0.899, recall = 0.926 -&gt; 0.922</li>
+                            <li>RasNet152V2(): f1 = 0.898 -&gt; 0.812, precision = 0.912 -&gt; 0.801, recall = 0.891 -&gt; 0.893</li>
+                            <li>EfficientNetB7() with weights = &apos;noisy-student&apos;: f1 = 0.949 -&gt; 0.941, 0.948 -&gt; 0.932, 0.955 -&gt; 0.955</li>
+                        </ul>
+                        <p>From the results, we can see that not everything is improved with customized weights. Even when there is an improvement, the change is quite small. Therefore, we are not going to use training_class_weights in future iterations.</p>
+                        <p>We also decide to remove EfficientNetB7() with weights = &apos;imagenet&apos;, InceptionV3() and RasNet152V2() from the list of usable models because their accuracy is the relatively low among all in both rounds now.</p>
+                        
+                        <!-- Modification 3 -->
+                        <h2>🚀 Modification 3: Change Optimizers</h2>
+                        <p>How about optimizers? What are some optimizers that are available and maybe have a better performance? Because we do have time limitation on running with TPUs, we cannot train on every model that we found in the first modifications. We will start with Xception() for now because of its faster runtime among all models with relatively high accuracy.</p>
+                        <p>Before we get started exploring, there is some notes on choosing the optimizers. Even though we have decided to not continue with training with class weights calculated from training dataset, there is still some facts we found out about our data. Namely, our dataset is imbalanced. So it is possible that some optimizers will perform worse than Adam (in the starter code), which is okay because we can always go back to it. But let&apos;s start experimenting first:</p>
+                        <pre><code class="language-python">
+model.compile(
+    optimizer='adam',
+#     optimizer = 'Adadelta',
+#     optimizer = 'Adagrad',
+#     optimizer = 'Adamax',
+#     optimizer = 'Ftrl',
+#     optimizer = 'Nadam',
+#     optimizer = 'RMSprop',
+#     optimizer = 'SGD',
+    loss = 'sparse_categorical_crossentropy',
+    metrics=['sparse_categorical_accuracy'],
+)                            
+                        </code></pre>
+                        <p>Again, let&apos;s do a comparison of the optimizers with relatively high accuracy on validation set:</p>
+                        <ul>
+                            <li>Adam: f1 = 0.936, precision = 0.944, recall = 0.932</li>
+                            <li>Adamax: f1 = 0.921, precision = 0.933, recall = 0.918</li>
+                            <li>Nadam: f1 = 0.937, precision = 0.942, recall = 0.936</li>
+                            <li>RMSprop: f1 = 0.937, precision = 0.941, recall = 0.937</li>
+                        </ul>
+                        <p>The improvements by changing the optimizers is not significant either. Since we cannot predict how the optimizers will perform on DenseNet201() and EfficientNetB7(), we will stick with Adam, which we know for sure that have a good performance on the other two models.</p>
+                        
+                        <!-- Modification 4 -->
+                        <h2>🎨 Modification 4: Mix Models</h2>
+                        <p>We want to try out mix and match models together. We have reduced our models to 3 now (Xception(), DenseNet201(), and EfficientNetB7()), so there will be 2! = 3 combinations of models. We examine each pair, and compare their performance.</p>
+                        <p>We need to build and train each model separately first, which is the same code we have been using for modification 1. Next, we need to find the best_alpha to set the weight between the two models. We adapted the code from this <a href="https://www.kaggle.com/wrrosa/tpu-enet-b7-densenet#Finding-best-alpha">notebook</a> on how to calculate the alpha that works the best.</p>
+                        <a href="#!"><img class="img-fluid" src="assets/img/mod4/xcepDense2.png" alt="Xception() + DenseNet201() Combo" /></a>
+                        <span class="caption text-muted">Visual Validations on Xception() + DenseNet201() Combo</span>
+                        <p>Let&apos;s do another round of comparisons on these three combinations:</p>
+                        <ul>
+                            <li>Xception() + DenseNet201(): f1 = 0.95, precision = 0.952, recall = 0.952 </li>
+                            <li>Xception() + EfficientNetB7(): f1 = 0.961, precision = 0.962, recall = 0.962</li>
+                            <li>DenseNet201() + EfficientNetB7(): f1 = 0.956, precision = 0.954, recall = 0.960</li>
+                        </ul>
+                        <p>Seems like the Xception() + EfficientNetB7() performs the best. Let&apos;s submit that! Indeed, the combination of Xception() and EfficientNetB7() gives us the best result we have so far in the competition -- a score of 0.95303!</p>
+                        <p>As for reference, the score by submitting DenseNet201() + EfficientNetB7() is 0.94967, which is also pretty good, but not as big as an improvement compared to the combination above: Xception() + EfficientNetB7(). We will stick with this combo for now.</p>
+                        <a href="#!"><img class="img-fluid" src="assets/img/mod4/mod4-score.png" alt="scores after mod4" /></a>
+                        <span class="caption text-muted">Submission Scores after Modification 4</span>
+
+                        <!-- Modification 5 -->
+                        <h2>🚧 Modification 5: Augment Images</h2>
+                        <p>In the provided starter code, only one simple data augmentation is done, which is to flip the image horizontally. We encounter two interesting image augmentations, which both involve some randomness. Not exactly sure the theory behind it, but it can be effective. Let&apos;s test it out.</p>
+                        <h3>Random Blockout</h3>
+                        <p>The idea is to erase or block out a portion of the training images. Code adapted from<a href="https://www.kaggle.com/dmitrynokhrin/densenet201-aug-additional-data">&nbsp;Dmitry&apos;s notebook</a>, and here is an illustration:</p>
+                        <a href="#!"><img class="img-fluid" src="assets/img/mod5/block1.png" alt="random blocking" /></a>
+                        <span class="caption text-muted">Random Blocking</span>
+                        <h3>Random Modifications to Images</h3>
+                        <p>This augmentation randomly make changes to the images, such as resize, crop, reset brightness, reset saturation, reset contract, blur, etc. Adapted from Xuanzhi Huang and Rahul Paul&apos;s <a href="https://www.kaggle.com/xuanzhihuang/flower-classification-densenet-201">notebook</a>:</p>
+                        <a href="#!"><img class="img-fluid" src="assets/img/mod5/change1.png" alt="random modifying" /></a>
+                        <span class="caption text-muted">Random Modifications</span>
+                        <p>Here are the statistics on validation set:</p>
+                        <ul>
+                            <li>random blocking: f1 = 0.960, precision = 0.961, recall = 0.963</li>
+                            <li>random changing: f1 = 0.791, precision = 0.844, recall = 0.781</li>
+                        </ul>
+                        <p>So randomly changing the pictures decreases the accuracy significantly, but blocking some parts of the training images does help improve the accuracy a little bit. We will keep that since it does give us better results when submitted to the competition -- 0.95462!</p>
+                        <a href="#!"><img class="img-fluid" src="assets/img/mod5/ver12-score.png" alt="score after random blocking" /></a>
+                        <span class="caption text-muted">Submission Score after Random Blocking</span>
+
+                        <!-- Modification 6 -->
+                        <h2>📈 Modification 6: Increase EPOCHS</h2>
+                        <p>In the starter code, the number of EPOCHS is set to 12. We stick with 12 for most iterations so far because if we try more EPOCHS, the time needed to train will increase.</p>
+                        <p>Since Kaggle has a limitation on 20 hours of TPUs/week, we do not want to spend too much time on &quot;picking the models&quot; round. Now we are kinda happy with what we get so far, let&apos;s try to increase that EPOCHS number to 20.</p>
+                        <img class="img-fluid" src="assets/img/mod6/epochs20.png" alt="evaluations after increasing epochs" />
+                        <span class="caption text-muted">Evaluations after Increasing Epochs to 20</span>
+                        <p>Let&apos;s do a quick comparisons on the validation set evaluations (same combo are used Xception() + EfficientNetB7()):</p>
+                        <ul>
+                            <li>12 EPOCHS: f1 = 0.961, precision = 0.962, recall = 0.962</li>
+                            <li>20 EPOCHS: f1 = 0.959, precision = 0.960, recall = 0.961</li>
+                        </ul>
+                        <p>The score submitted to the competition does not change a lot either; it even goes down a bit from 0.95462 to 0.95417. Hence, we will switch back to 12 EPOCHS.</p>
+                        
+                        <!-- Modification 7 -->
+                        <h2>💽 Modification 7: Incorporate External Data</h2>
+                        <p>One of the top-rated <a href="https://www.kaggle.com/atamazian/fc-ensemble-external-data-effnet-densenet">notebooks</a> mentions how using external data can increase the model&rsquo;s accuracy. This makes a lot of sense theoretically since with more training data, we can refine the classifier. So let&rsquo;s add in more <a href="https://www.kaggle.com/kirillblinov/tf-flower-photo-tfrec">data</a>!</p>
+                        <p>Original dataset has12753 training images, 3712 validation images, 7382 unlabeled test images. With this extra training dataset, we have 68094 training images, 3712 validation images, 7382 unlabeled test images</p>
+                        <p>That is a lot of new data added! We go from 12k to 68k now. The time for training for sure is going to go up. But it is worth it because the evaluations and the scores are good:</p>
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                <img class="img-fluid" src="assets/img/mod7/extraTraining.png" alt="evaluations after adding training data" />
+                                <span class="caption text-muted">Evaluations after Adding Training Data</span>
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid" src="assets/img/mod7/extraTraining2.png" alt="visual validation after adding training data" />
+                                <span class="caption text-muted">Visual Validation after Adding Training Data</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Submissions -->
+                        <h2>Submissions&nbsp;</h2>
+                        <p>In the end, after exhausting all the TPU quotas we have, we made 7 submissions to the competitions:</p>
+                        <ul>
+                            <li>Version 1: Starter code, score 0.04083</li>
+                            <li>Version 3: DenseNet201(), score 0.94145</li>
+                            <li>Version 9: mix DenseNet201() + EfficientNetB7(&apos;noisy-student&apos;), score 0.94967</li>
+                            <li>Version 11: mix Xception() + EfficientNetB7(&apos;noisy-student&apos;), score 0.95303</li>
+                            <li>Version 12: random blocking + version 11, score 0.95462</li>
+                            <li>Version 15: 20 EPOCHS + version 12, score 0.95417 </li>
+                            <li>Version 18: extra training data + version 12, score 0.95901&nbsp;</li>
+                        </ul>
+                        <img class="img-fluid" src="assets/img/mod7/ver18-score.png" alt="best score" />
+                        <span class="caption text-muted">Best Score, Rank #25</span>
+
+                        <!-- Potential Modification 8 -->
+                        <h2>🥇 Potential Modification 8: Find Best Optimizer for Each Model</h2>
+                        <p>In 🚀 Modification 3, we experiment with different optimizers on Xception() model and use the result as a general rule for other models as well. This may not be true, though. If time allows, we will also figure out the best optimizer for each of Xception(), DenseNet201() and EfficientNetB7() architectures. Unfortunately, we are running out of our TPU quotas, so we cannot test it out at this point.</p>
+                        
+                        <!-- Challenges & Takeaways -->
+                        <h1>Challenges and Takeaways</h1>
+                        <p>Overall, it is a fun time to work on the project, and the sense of accomplishment is huge when we see our place goes from 140 to 25 on the leaderboard. But there are some challenges presented as well. The biggest challenge is that the TPU usage has a time limitation, so we need to give up some potential improvements to train the models within the time frame, and have to turn off the TPU when we are writing code instead of running it.&nbsp;</p>
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                <img class="img-fluid" src="assets/img/mod7/tpuQuota.png" alt="TPU quota" />
+                                <span class="caption text-muted">TPU Quota</span>
+                            </div>
+                        </div>
+                        <p>Another challenge is picking the right models. In the Keras library, there are a lot of models that we did not get to explore in modification 1. We only get to choose 10 architectures, so the strategy we used is to search for papers that do some comparisons. As an example, for ResNet, a powerful deep neural network idea, there are 8 different models provided. According to this <a href="https://arxiv.org/pdf/1512.03385.pdf">paper&nbsp;</a>on ResNet, seems like ResNet-152 has the least top-1 and top-5 error rates compared to other shallower ResNet models (such as ResNet50 or ResNet101) for classification on Imagenet validation. Hence, we use ResNet152V2() instead of others.</p>
+                        <p>Throughout this project, we learned about a lot of commonly used architectures, optimizers, and data augmentation strategies. We also gained a lot more experience working with images and transfer training neural networks. It was a lot of fun to read and discuss ideas with other teams on Kaggle. This is the first time we did a competition on Kaggle, and it was definitely worth the time and effort we put in.</p>
+                        <p>Future work on this project may include exploring other network architectures, trying out various optimizers for each architecture, and exploring other data augmentation ideas that do not involve so much randomness. We had a great time working on this project and are excited to explore more in the field of computer vision!&nbsp;</p>
+                        
+                        <!-- References -->
+                        <h1>References</h1>
+
                     </div>
                 </div>
             </div>
@@ -93,23 +281,7 @@ with strategy.scope():
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <ul class="list-inline text-center">
                             <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
+                                <a href="https://github.com/MoSummers-dy/cse455-final-project">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -117,7 +289,7 @@ with strategy.scope():
                                 </a>
                             </li>
                         </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2021</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; CSE 455 Final Project</div>
                     </div>
                 </div>
             </div>
