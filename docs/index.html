@@ -121,8 +121,7 @@
                         The good news is, we will have just over 100 types, so the work is
                         easier.</p>
                         <p>Our project builds upon&nbsp;Ryan&apos;s notebook<a
-                            href="https://www.kaggle.com/ryanholbrook/create-your-first-submission">
-                            <sup>[2]</sup></a>
+                            href="https://www.kaggle.com/ryanholbrook/create-your-first-submission"><sup>[2]</sup></a>
                              on how to build an image classifier in Keras and train it on Tensor
                              Processing Unit (TPU). We then expand from there
                             to train with other models and techniques with ideas of our own.</p>
@@ -195,33 +194,33 @@
                         After training, we do see slight improvements and the accuracy of the
                         validation set goes from 22% to 26%. We decided to move on with
                         Trainable=True for now with other models.</p>
-                        <p>We then continue to train with VGG19, Xception, DenseNet201, EfficientNetB7, InceptionV3, MobileNetV3Small, NASNetMobile and ResNet152V2.&nbsp;</p>
+                        <p>We then continue to train with <code>VGG19()</code>, <code>Xception()</code>, <code>DenseNet201()</code>, <code>EfficientNetB7()</code>, <code>InceptionV3()</code>, <code>MobileNetV3Small()</code>, <code>NASNetMobile()</code>, and <code>ResNet152V2()</code>.&nbsp;</p>
                         <div class="row justify-content-center align-items-center">
                             <div class="col-4">
                                 <img class="img-fluid" src="assets/img/mod1/mobileNet1.png" alt="denseNet2" />
-                                <span class="caption text-muted">MobileNetV3Small() Confusion Matrix</span>
+                                <span class="caption text-muted"><code>MobileNetV3Small()</code> Confusion Matrix</span>
                             </div>
                             <div class="col-4">
                                 <img class="img-fluid" src="assets/img/mod1/nasNet2.png" alt="nasNet1" />
-                                <span class="caption text-muted">NASNetMobile() Confusion Matrix</span>
+                                <span class="caption text-muted"><code>NASNetMobile()</code> Confusion Matrix</span>
                             </div>
                             <div class="col-4">
                                 <img class="img-fluid" src="assets/img/mod1/resNet2.png" alt="res2" />
-                                <span class="caption text-muted">ResNet152V2() Confusion Matrix</span>
+                                <span class="caption text-muted"><code>ResNet152V2()</code> Confusion Matrix</span>
                             </div>
                         </div>
                         <div class="row justify-content-center align-items-center">
                             <div class="col-4">
                                 <img class="img-fluid" src="assets/img/mod1/denseNet3.png" alt="denseNet3" />
-                                <span class="caption text-muted">DenseNet201() Visual Validation</span>
+                                <span class="caption text-muted"><code>DenseNet201()</code> Visual Validation</span>
                             </div>
                             <div class="col-4">
                                 <img class="img-fluid" src="assets/img/mod1/efficientNet3.png" alt="efn3" />
-                                <span class="caption text-muted">EfficientNetB7() Visual Validation</span>
+                                <span class="caption text-muted"><code>EfficientNetB7()</code> Visual Validation</span>
                             </div>
                             <div class="col-4">
                                 <img class="img-fluid" src="assets/img/mod1/xception2.png" alt="xception2" />
-                                <span class="caption text-muted">Xception() Visual Validation</span>
+                                <span class="caption text-muted"><code>Xception()</code> Visual Validation</span>
                             </div>
                         </div>
                         <p>Some of these models perform worse than VGG16, such as VGG 19 (15.17%
@@ -285,10 +284,12 @@
                             training only)&quot;. It is set up for&nbsp;classification
                             on imbalanced data<a
                             href="https://www.tensorflow.org/tutorials/structured_data/imbalanced_data"><sup>[9]</sup></a>.</p>
-                        <p>Maybe we can customize this attribute? Let us start by calculating the percentage of each class presented in the training dataset. Here is a graph that show the different weights &ndash; an inverse of percentage:</p>
+                        <p>Maybe we can customize this attribute? Let us start by calculating the
+                        percentage of each class presented in the training dataset. Here is a graph
+                        that show the different weights &ndash; an inverse of percentage:</p>
                         <img class="img-fluid" src="assets/img/mod2/classWeights.png" alt="class weights" />
                         <span class="caption text-muted">Class Weights (inverse of %)</span>
-                        <p>We pick the models that perform pretty well in the last round: Xception(), DenseNet201(), EfficientNetB7(), Inception2(), and RasNet152V2(), and train these with class weights.</p>
+                        <p>We pick the models that perform pretty well in the last round: <code>Xception()</code>, <code>DenseNet201()</code>, <code>EfficientNetB7()</code>, <code>InceptionV2()</code>, and <code>ResNet152V2()</code>, and train these with class weights.</p>
 						<pre><code class="language-python">
 history = model.fit(
     ds_train,
@@ -300,7 +301,8 @@ history = model.fit(
     class_weight = training_class_weights
     )
 						</code></pre>
-                        <p>Another quick comparison on f1, precision, and recall (before -&gt; after applying class weights):</p>
+                        <p>Another quick comparison on f1, precision, and recall (before -&gt; after
+                        applying class weights):</p>
                         <table class="table">
                             <thead>
                               <tr>
@@ -360,8 +362,8 @@ history = model.fit(
                         customized weights.</strong> Therefore, we are not going to use
                         <code>training_class_weights</code> in future iterations.</p>
                         <!-- TODO: <code> -->
-                        <p>We also decide to remove EfficientNetB7() with weights =
-                        &apos;imagenet&apos;, InceptionV3() and RasNet152V2() from the list of
+                        <p>We also decide to remove <code>EfficientNetB7()</code> with weights =
+                        &apos;imagenet&apos;, <code>InceptionV3()</code> and <code>RasNet152V2()</code> from the list of
                         usable models because their accuracy is the relatively low among all in both
                         rounds now.</p>
 
@@ -377,7 +379,7 @@ history = model.fit(
                         optimizers. Even though we have decided to not continue with training with
                         class weights calculated from training dataset, there is still some facts we
                         found out about our data. Namely, our dataset is imbalanced. So it is
-                        possible that some optimizers will perform worse than Adam (in the starter
+                        possible that some optimizers will perform worse than <code>Adam</code> (in the starter
                         code), which is okay because we can always go back to it. But let&apos;s
                         start experimenting first:</p>
                         <pre><code class="language-python">
