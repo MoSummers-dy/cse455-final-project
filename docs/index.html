@@ -43,7 +43,7 @@
             <div class="container">
                 <!-- Side navigation -->
                 <div class="row py-3">
-                    <div class="col-3 order-2">
+                    <div class="col-9 order-2">
                         <nav class="nav navbar-dark sticky-top flex-column py-3">
                             <ul>
                                 <li class="list-group-item list-group-item-action"><a href="#summary" class="nav-link">Summary</a></li>
@@ -66,7 +66,7 @@
                             href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a>
                             to develop a classifier that classifies 104 types of flowers. We started
                             with provided code using a <strong>convolution neural net (CNN)</strong> architecture
-                            called VGG16 to train the model with transfer training, and deployed
+                            <code>VGG16</code> to train the model with transfer training, and deployed
                             <strong>seven different significant modifications</strong> to increase the performance of
                             the classifier:
                         </p>
@@ -105,8 +105,7 @@
                         </p>
 
                         <p>For a video summary of this project, please see&nbsp;below.
-                            A detailed video walk-through is also available&nbsp;
-                            <a href="https://youtu.be/4WblQduKdqE">here</a>.&nbsp;</p>
+                        A detailed video walk-through is also available&nbsp; in the VI. Video section below.&nbsp;</p>
                         <!-- TODO -->
                         <p>[Insert YouTube Video Frame]</p>
 
@@ -164,7 +163,7 @@
                         <p>Now we&apos;re ready to create a neural network for classifying images!
                         <strong>We&apos;ll use what&apos;s known as transfer learning.</strong> With transfer
                         learning, we reuse part of a pre-trained model to get a head-start on a new dataset.&nbsp;</p>
-                        <p>For the starter code, it uses a model called VGG16 (pre-trained on
+                        <p>For the starter code, it uses a model called <code>VGG16</code> (pre-trained on
                         ImageNet<a
                         href="https://image-net.org/"><sup>[6]</sup></a>).
                         However, the accuracy on the validation set is only about 22%, which is far
@@ -187,7 +186,7 @@
                         <a name="mod1"></a>
                         <h2>🔔 Modification 1: Train with Other Models</h2>
                         <p>We want to experiment with other models included with Keras.</p>
-                        <p>We start simple. We stick with VGG16 for now, but we would like to change
+                        <p>We start simple. We stick with <code>VGG16</code> for now, but we would like to change
                         the trainable attribute so that it unfreezes the layers and keep changing
                         the values<a
                         href="https://www.tensorflow.org/guide/keras/transfer_learning"><sup>[7]</sup></a>.
