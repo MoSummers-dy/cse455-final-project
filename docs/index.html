@@ -275,7 +275,7 @@
                         <p>For this modification, the idea is to adjust the weights to
                         &quot;pay more attention&quot; to the under-represented classes that only
                         have a small amount of available samples.</p>
-                        <p>Inside model.fit(), there is an attribute called class_weight<a
+                        <p>Inside Keras&apos;s <code>model.fit()</code>, there is an attribute called <code>class_weight</code><a
                             href="https://keras.io/api/models/sequential/"><sup>[8]</sup></a>. This
                             attribute is an &quot;optional dictionary mapping class indices (integers)
                             to a weight (float) value, used for weighting the loss function (during
@@ -299,14 +299,78 @@ history = model.fit(
 						</code></pre>
                         <p>Another quick comparison on f1, precision, and recall (before -&gt; after applying class weights):</p>
                         <ul>
-                            <li>Xception(): f1 = 0.936 -&gt; 0.941, precision = 0.944 -&gt; 0.940, recall = 0.932 -&gt; 0.946</li>
-                            <li>DenseNet201(): f1 = 0.942 -&gt; 0.935, precision = 0.944 -&gt; 0.931, recall = 0.944 -&gt; 0.944</li>
-                            <li>EfficientNetB7() with weights = &apos;imagenet&apos;: f1 = 0.895 -&gt; 0.901, precision = 0.901 -&gt; 0.894, recall = 0.895 -&gt; 0.914</li>
-                            <li>InceptionV3(): f1 = 0.925 -&gt; 0.907, precision = 0.930 -&gt; 0.899, recall = 0.926 -&gt; 0.922</li>
-                            <li>RasNet152V2(): f1 = 0.898 -&gt; 0.812, precision = 0.912 -&gt; 0.801, recall = 0.891 -&gt; 0.893</li>
-                            <li>EfficientNetB7() with weights = &apos;noisy-student&apos;: f1 = 0.949 -&gt; 0.941, 0.948 -&gt; 0.932, 0.955 -&gt; 0.955</li>
+                            <li>Xception(): f1 = 0.936 -&gt; 0.941, precision = 0.944 -&gt; 0.940,
+                            recall = 0.932 -&gt; 0.946</li>
+                            <li>DenseNet201(): f1 = 0.942 -&gt; 0.935, precision = 0.944 -&gt;
+                            0.931, recall = 0.944 -&gt; 0.944</li>
+                            <li>EfficientNetB7() with weights = &apos;imagenet&apos;: f1 = 0.895
+                            -&gt; 0.901, precision = 0.901 -&gt; 0.894, recall = 0.895 -&gt;
+                            0.914</li>
+                            <li>InceptionV3(): f1 = 0.925 -&gt; 0.907, precision = 0.930 -&gt;
+                            0.899, recall = 0.926 -&gt; 0.922</li>
+                            <li>RasNet152V2(): f1 = 0.898 -&gt; 0.812, precision = 0.912 -&gt;
+                            0.801, recall = 0.891 -&gt; 0.893</li>
+                            <li>EfficientNetB7() with weights = &apos;noisy-student&apos;: f1 =
+                            0.949 -&gt; 0.941, 0.948 -&gt; 0.932, 0.955 -&gt; 0.955</li>
                         </ul>
-                        <p>From the results, <strong>we do not see significant improvement with customized weights.</strong> Therefore, we are not going to use training_class_weights in future iterations.</p>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">F1</th>
+                                <th scope="col">Precision</th>
+                                <th scope="col">Recall</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Xception</td>
+                                <td>0.936 -&gt; 0.941</td>
+                                <td>0.944 -&gt; 0.940</td>
+                                <td>0.932 -&gt; 0.946</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>DenseNet201s</td>
+                                <td>0.942 -&gt; 0.935</td>
+                                <td>0.944 -&gt; 0.931</td>
+                                <td>0.944 -&gt; 0.944</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>EfficientNetB7 with weights = &apos;imagenet&apos;</td>
+                                <td>0.895 -&gt; 0.901</td>
+                                <td>0.901 -&gt; 0.894</td>
+                                <td>0.895 -&gt; 0.914</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">4</th>
+                                <td>EfficientNetB7() with weights = &apos;noisy-student&apos;</td>
+                                <td>0.949 -&gt; 0.941</td>
+                                <td>0.948 -&gt; 0.932</td>
+                                <td>0.955 -&gt; 0.955</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">5</th>
+                                <td>InceptionV3</td>
+                                <td>0.925 -&gt; 0.907</td>
+                                <td>0.930 -&gt; 0.899</td>
+                                <td>0.926 -&gt; 0.922</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">6</th>
+                                <td>InceptionV2</td>
+                                <td>0.898 -&gt; 0.812</td>
+                                <td>0.912 -&gt; 0.801</td>
+                                <td>0.891 -&gt; 0.893</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        <p>From the results, <strong>we do not see significant improvement with
+                        customized weights.</strong> Therefore, we are not going to use
+                        <code>training_class_weights</code> in future iterations.</p>
                         <p>We also decide to remove EfficientNetB7() with weights = &apos;imagenet&apos;, InceptionV3() and RasNet152V2() from the list of usable models because their accuracy is the relatively low among all in both rounds now.</p>
 
                         <!-- Modification 3 -->
