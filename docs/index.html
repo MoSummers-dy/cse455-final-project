@@ -60,7 +60,7 @@
 
                         <!-- Summary -->
                         <a name="summary"></a>
-                        <h1>Summary</h1>
+                        <h1>I. Summary</h1>
                         <p>
                             we competed in a Kaggle competition<a
                             href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a>
@@ -109,7 +109,7 @@
 
                         <!-- Motivation & Setup -->
                         <a name="setup"></a>
-                        <h1>Motivation & Setup</h1>
+                        <h1>II. Motivation & Setup</h1>
                         <p>There are a lot of species in nature, for over 5,000
                         species of mammals, 10,000 species of birds, and 30,000 species of fish. How
                         about some plants? Well, we have over 400,000 different types of flowers!
@@ -134,7 +134,7 @@
 
                         <!-- Dataset -->
                         <a name="data"></a>
-                        <h1>Dataset</h1>
+                        <h1>III. Dataset</h1>
                         <p>The Kaggle competition provides&nbsp; data<a
                         href="https://www.kaggle.com/c/tpu-getting-started/data"><sup>[4]</sup></a>
                         in&nbsp; TFRecords<a href="https://www.kaggle.com/ryanholbrook/tfrecords-basics"><sup>[5]</sup></a> format, which fits well into TPUs. We have:</p>
@@ -158,7 +158,7 @@
 
                         <!-- Techniques & Evaluations  -->
                         <a name="tech"></a>
-                        <h1>Techniques & Evaluations</h1>
+                        <h1>IV. Techniques & Evaluations</h1>
                         <p>Now we&apos;re ready to create a neural network for classifying images!
                         <strong>We&apos;ll use what&apos;s known as transfer learning.</strong> With transfer
                         learning, we reuse part of a pre-trained model to get a head-start on a new dataset.&nbsp;</p>
@@ -531,7 +531,7 @@ model.compile(
                         <p>In the provided starter code, only one simple data augmentation is done,
                         which is to flip the image horizontally. We encounter two interesting image
                         augmentations, both of which involve some randomness. Let&apos;s test it out.</p>
-                        <h3>Random Blockout</h3>
+                        <h3>5.1 Random Blockout</h3>
                         <p>The first image augmentation is adapted from Dmitry&apos;s
                             notebook<a
                         href="https://www.kaggle.com/dmitrynokhrin/densenet201-aug-additional-data"><sup>[11]</sup></a>.
@@ -542,10 +542,10 @@ model.compile(
                                 <span class="caption text-muted">Random Blocking</span>
                             </div>
                         </div>
-                        <h3>Random Modifications to Images</h3>
+                        <h3>5.2 Random Modifications to Images</h3>
                         <p>The second augmentation is adapted
                             from Xuanzhi Huang and Rahul Paul&apos;s notebook<a
-                            href="https://www.kaggle.com/xuanzhihuang/flower-classification-densenet-201"><sup>[12]</sup></a>
+                            href="https://www.kaggle.com/xuanzhihuang/flower-classification-densenet-201"><sup>[12]</sup></a>.
                             It randomly make changes to the images, such as resize,
                         crop, reset brightness, reset saturation, reset contract, blur, etc.:</p>
                         <div class="row justify-content-center">
@@ -554,6 +554,7 @@ model.compile(
                                 <span class="caption text-muted">Random Modifications</span>
                             </div>
                         </div>
+                        <h3>5.3 Evaluations</h3>
                         <p>Here are the statistics on the validation set:</p>
                         <table class="table">
                             <thead>
@@ -596,7 +597,7 @@ model.compile(
                         <p>In the starter code, the number of epochs is set to 12. We stick with 12
                         for most iterations so far because if we try more epochs, the time needed to
                         train will increase.</p>
-                        <p>Since Kaggle has a limitation on 20 hours of TPUs/week, we do not want to
+                        <p>Since Kaggle has a limitation on 20 hours of TPUs per week, we do not want to
                         spend too much time on &quot;picking the models&quot; round. Now we are
                         kinda happy with what we get so far, let&apos;s try to increase the number
                         of epochs to 20.</p>
@@ -698,7 +699,7 @@ model.compile(
 
                         <!-- Challenges & Takeaways -->
                         <a name="takeaway"></a>
-                        <h1>Challenges & Takeaways</h1>
+                        <h1>V. Challenges & Takeaways</h1>
                         <p>Overall, it is a fun time to work on the project, and the sense of
                         accomplishment is huge when we see our place goes from 140 to 23 on the
                         leaderboard. But there are some challenges presented as well.
@@ -737,13 +738,13 @@ model.compile(
 
                         <!-- Video -->
                         <a name="video"></a>
-                        <h1>Video</h1>
+                        <h1>VI. Video</h1>
                         <iframe width="722" height="361" src="https://www.youtube.com/embed/4WblQduKdqE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <br>
 
                         <!-- References -->
                         <a name="ref"></a>
-                        <h1>References</h1>
+                        <h1>VII. References</h1>
                         <ul>
                             <li>placeholder</li>
                             <li>placeholder</li>
