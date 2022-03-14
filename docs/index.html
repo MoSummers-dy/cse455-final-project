@@ -65,9 +65,9 @@
                             we competed in a Kaggle competition <a
                             href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a>
                             to develop a classifier that classifies 104 types of flowers. We started
-                            with provided code using a convolution neural net (CNN) architecture
+                            with provided code using a <strong>convolution neural net (CNN)</strong> architecture
                             called VGG16 to train the model with transfer training, and deployed
-                            seven different significant modifications to increase the performance of
+                            <strong>seven different significant modifications</strong> to increase the performance of
                             the classifier:
                         </p>
                         <a name="list"><span class="caption text-muted">Click to go to specific modification</span></a>
@@ -82,11 +82,11 @@
                         </ul>
                         <p>
                             We compare the models based on their f1-score, precision, and recall on
-                            their predictions on the validation set. Our best model is a combination
+                            their predictions on the validation set. <strong>Our best model is a combination
                             of Xception and EfficientNet architecture, with extra training data and
-                            images augmented with random blocking. The starter code has a score of
-                            0.04083, while our best model got a score of 0.95901, which places us in
-                            24th on the leaderboard. We also discuss the challenges and takeaways
+                            images augmented with random blocking.</strong> The starter code has a score of
+                            0.04083, while <strong>our best model got a score of 0.95901, which places us in
+                            24th on the leaderboard.</strong> We also discuss the challenges and takeaways
                             towards the end of this report.
                         </p>
                         <p>For a video summary of this project, please see&nbsp;below.
@@ -97,25 +97,20 @@
                         <p>
                             Source code for our best model is in this
                             <a href="https://github.com/MoSummers-dy/cse455-final-project/blob/main/iter7-extra-training.ipynb">
-                                Jupyter Notebook
-                            </a>
+                                Jupyter Notebook</a>
                             or in this Kaggle Notebook
                             <a href="https://www.kaggle.com/mosummers/petals-to-the-metal-cv-project">
-                                here
-                            </a>.
+                                here</a>.
                             Different versions of the notebook shows our various modifications.
                             We also recorded intermediate epoch records and experiments for reference
                             <a href="https://docs.google.com/document/d/1W8seR7kPzklhTNjTv2NAMuiUA9yCf88763LlOnq8Dw8/edit?usp=sharing">
-                                here
-                            </a>.
+                                here</a>.
                         </p>
 
                         <!-- Motivation & Setup -->
                         <a name="setup"></a>
                         <h1>Motivation & Setup</h1>
-                        <p>This project is from a&nbsp;<a
-                        href="https://www.kaggle.com/c/tpu-getting-started"> Petals to the Metal </a>
-                        Kaggle competition. There are a lot of species in nature, for over 5,000
+                        <p>There are a lot of species in nature, for over 5,000
                         species of mammals, 10,000 species of birds, and 30,000 species of fish. How
                         about some plants? Well, we have over 400,000 different types of flowers!
                         Incredible! For this competition, each team is challenged to build a machine
@@ -165,7 +160,7 @@
                         <a name="tech"></a>
                         <h1>Techniques & Evaluations</h1>
                         <p>Now we&apos;re ready to create a neural network for classifying images!
-                        We&apos;ll use what&apos;s known as transfer learning. With transfer
+                        <strong>We&apos;ll use what&apos;s known as transfer learning.</strong> With transfer
                         learning, we reuse part of a pre-trained model to get a head-start on a new dataset.&nbsp;</p>
                         <p>For the starter code, it uses a model called VGG16 (pre-trained on
                         ImageNet <a
@@ -174,10 +169,10 @@
                         below what we want. Let us try other models to make it better.</p>
                         <p>
                             Before making the final predictions on the test set, it's a good idea to
-                            evaluate model's predictions on the validation set. This can help
+                            evaluate model&apos;s predictions on the validation set. This can help
                             diagnose problems in training or suggest ways the model could be
-                            improved. We'll look at two common ways of validation: plotting the
-                            confusion matrix and visual validation.
+                            improved. <strong>We&apos;ll look at two common ways of validation: plotting the
+                            confusion matrix and visual validation.</strong>
                             A confusion matrix shows the actual class of an image tabulated against
                             its predicted class. It is one of the best tools for evaluating the
                             performance of a classifier.
@@ -192,8 +187,8 @@
                         <p>We want to experiment with other models included with Keras.</p>
                         <p>We start simple. We stick with VGG16 for now, but we would like to change
                         the trainable attribute so that it unfreezes the layers and keep changing
-                        the values. Read more&nbsp;<a
-                        href="https://www.tensorflow.org/guide/keras/transfer_learning">here</a>.
+                        the values <a
+                        href="https://www.tensorflow.org/guide/keras/transfer_learning"><sup>[7]</sup></a>.
                         After training, we do see slight improvements and the accuracy of the
                         validation set goes from 22% to 26%. We decided to move on with
                         Trainable=True for now with other models.</p>
