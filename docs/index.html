@@ -272,8 +272,16 @@
                         <!-- Modification 2 -->
                         <a name="mod2"></a>
                         <h2>⚖️ Modification 2: Calculate Weights</h2>
-                        <p>Inside model.fit(), there is an attribute called class_weight. According to Keras&nbsp;<a href="https://keras.io/api/models/sequential/">doc</a>: this attribute is an &quot;optional dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only)&quot;. It is set up for<a href="https://www.tensorflow.org/tutorials/structured_data/imbalanced_data">&nbsp;classification on imbalanced data</a>.</p>
-                        <p>The big idea is that since we do not have many samples for those less represented classes, we should have the classifer weight heavily on those few examples that are available. In other words, we want the models to &quot;pay more attention&quot; to example from an under-represented class.</p>
+                        <p>For this modification, the idea is to adjust the weights to
+                        &quot;pay more attention&quot; to the under-represented classes that only
+                        have a small amount of available samples.</p>
+                        <p>Inside model.fit(), there is an attribute called class_weight<a
+                            href="https://keras.io/api/models/sequential/"><sup>[8]</sup></a>. This
+                            attribute is an &quot;optional dictionary mapping class indices (integers)
+                            to a weight (float) value, used for weighting the loss function (during
+                            training only)&quot;. It is set up for&nbsp;classification
+                            on imbalanced data<a
+                            href="https://www.tensorflow.org/tutorials/structured_data/imbalanced_data"><sup>[9]</sup></a>.</p>
                         <p>Maybe we can customize this attribute? Let us start by calculating the percentage of each class presented in the training dataset. Here is a graph that show the different weights &ndash; an inverse of percentage:</p>
                         <img class="img-fluid" src="assets/img/mod2/classWeights.png" alt="class weights" />
                         <span class="caption text-muted">Class Weights (inverse of %)</span>
@@ -298,7 +306,7 @@ history = model.fit(
                             <li>RasNet152V2(): f1 = 0.898 -&gt; 0.812, precision = 0.912 -&gt; 0.801, recall = 0.891 -&gt; 0.893</li>
                             <li>EfficientNetB7() with weights = &apos;noisy-student&apos;: f1 = 0.949 -&gt; 0.941, 0.948 -&gt; 0.932, 0.955 -&gt; 0.955</li>
                         </ul>
-                        <p>From the results, we can see that not everything is improved with customized weights. Even when there is an improvement, the change is quite small. Therefore, we are not going to use training_class_weights in future iterations.</p>
+                        <p>From the results, <strong>we do not see significant improvement with customized weights.</strong> Therefore, we are not going to use training_class_weights in future iterations.</p>
                         <p>We also decide to remove EfficientNetB7() with weights = &apos;imagenet&apos;, InceptionV3() and RasNet152V2() from the list of usable models because their accuracy is the relatively low among all in both rounds now.</p>
 
                         <!-- Modification 3 -->
