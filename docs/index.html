@@ -62,7 +62,7 @@
                         <a name="summary"></a>
                         <h1>Summary</h1>
                         <p>
-                            we competed in a Kaggle competition <a
+                            we competed in a Kaggle competition<a
                             href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a>
                             to develop a classifier that classifies 104 types of flowers. We started
                             with provided code using a <strong>convolution neural net (CNN)</strong> architecture
@@ -117,14 +117,14 @@
                         learning model that identifies the type of flowers in a dataset of images.
                         The good news is, we will have just over 100 types, so the work is
                         easier.</p>
-                        <p>Our project builds upon&nbsp;Ryan&apos;s notebook
-                            <a href="https://www.kaggle.com/ryanholbrook/create-your-first-submission">
+                        <p>Our project builds upon&nbsp;Ryan&apos;s notebook<a
+                            href="https://www.kaggle.com/ryanholbrook/create-your-first-submission">
                             <sup>[2]</sup></a>
                              on how to build an image classifier in Keras and train it on Tensor
                              Processing Unit (TPU). We then expand from there
                             to train with other models and techniques with ideas of our own.</p>
                         <p>
-                            A TPU <a href="https://www.kaggle.com/docs/tpu"><sup>[3]</sup></a>
+                            A TPU<a href="https://www.kaggle.com/docs/tpu"><sup>[3]</sup></a>
                             has eight different cores, and each of these cores acts as its own
                         accelerator. A TPU is sort of like having eight GPUs on one machine. We
                         used TPUs for this challenge because these are equipped with 128 GB
@@ -135,9 +135,9 @@
                         <!-- Dataset -->
                         <a name="data"></a>
                         <h1>Dataset</h1>
-                        <p>The Kaggle competition provides&nbsp; data <a
+                        <p>The Kaggle competition provides&nbsp; data<a
                         href="https://www.kaggle.com/c/tpu-getting-started/data"><sup>[4]</sup></a>
-                        in&nbsp; TFRecords <a href="https://www.kaggle.com/ryanholbrook/tfrecords-basics"><sup>[5]</sup></a> format, which fits well into TPUs. We have:</p>
+                        in&nbsp; TFRecords<a href="https://www.kaggle.com/ryanholbrook/tfrecords-basics"><sup>[5]</sup></a> format, which fits well into TPUs. We have:</p>
                         <ul>
                             <li>train/*.tfrec - training samples, including labels.
                             </li>
@@ -163,7 +163,7 @@
                         <strong>We&apos;ll use what&apos;s known as transfer learning.</strong> With transfer
                         learning, we reuse part of a pre-trained model to get a head-start on a new dataset.&nbsp;</p>
                         <p>For the starter code, it uses a model called VGG16 (pre-trained on
-                        ImageNet <a
+                        ImageNet<a
                         href="https://image-net.org/"><sup>[6]</sup></a>).
                         However, the accuracy on the validation set is only about 22%, which is far
                         below what we want. Let us try other models to make it better.</p>
@@ -187,7 +187,7 @@
                         <p>We want to experiment with other models included with Keras.</p>
                         <p>We start simple. We stick with VGG16 for now, but we would like to change
                         the trainable attribute so that it unfreezes the layers and keep changing
-                        the values <a
+                        the values<a
                         href="https://www.tensorflow.org/guide/keras/transfer_learning"><sup>[7]</sup></a>.
                         After training, we do see slight improvements and the accuracy of the
                         validation set goes from 22% to 26%. We decided to move on with
@@ -252,14 +252,13 @@
                               </tr>
                               <tr>
                                 <th scope="row">3</th>
-                                <td>* EfficientNetB7</td>
+                                <td>EfficientNetB7 with weights = &apos;imagenet&apos;</td>
                                 <td>0.895</td>
                                 <td>0.901</td>
                                 <td>0.895</td>
                               </tr>
                             </tbody>
                           </table>
-                        <p>* EfficientNetB7 with weights = &apos;imagenet&apos;</p>
                         <p>One thing to note is that when we were experimenting with our ⚖️
                         Modification 2, we came across a blog saying how the performance can be
                         improved if we changed the value assigned to the weights attribute.
