@@ -298,21 +298,6 @@ history = model.fit(
     )
 						</code></pre>
                         <p>Another quick comparison on f1, precision, and recall (before -&gt; after applying class weights):</p>
-                        <ul>
-                            <li>Xception(): f1 = 0.936 -&gt; 0.941, precision = 0.944 -&gt; 0.940,
-                            recall = 0.932 -&gt; 0.946</li>
-                            <li>DenseNet201(): f1 = 0.942 -&gt; 0.935, precision = 0.944 -&gt;
-                            0.931, recall = 0.944 -&gt; 0.944</li>
-                            <li>EfficientNetB7() with weights = &apos;imagenet&apos;: f1 = 0.895
-                            -&gt; 0.901, precision = 0.901 -&gt; 0.894, recall = 0.895 -&gt;
-                            0.914</li>
-                            <li>InceptionV3(): f1 = 0.925 -&gt; 0.907, precision = 0.930 -&gt;
-                            0.899, recall = 0.926 -&gt; 0.922</li>
-                            <li>RasNet152V2(): f1 = 0.898 -&gt; 0.812, precision = 0.912 -&gt;
-                            0.801, recall = 0.891 -&gt; 0.893</li>
-                            <li>EfficientNetB7() with weights = &apos;noisy-student&apos;: f1 =
-                            0.949 -&gt; 0.941, 0.948 -&gt; 0.932, 0.955 -&gt; 0.955</li>
-                        </ul>
                         <table class="table">
                             <thead>
                               <tr>
@@ -347,7 +332,7 @@ history = model.fit(
                               </tr>
                               <tr>
                                 <th scope="row">4</th>
-                                <td>EfficientNetB7() with weights = &apos;noisy-student&apos;</td>
+                                <td>EfficientNetB7 with weights = &apos;noisy-student&apos;</td>
                                 <td>0.949 -&gt; 0.941</td>
                                 <td>0.948 -&gt; 0.932</td>
                                 <td>0.955 -&gt; 0.955</td>
@@ -371,13 +356,27 @@ history = model.fit(
                         <p>From the results, <strong>we do not see significant improvement with
                         customized weights.</strong> Therefore, we are not going to use
                         <code>training_class_weights</code> in future iterations.</p>
-                        <p>We also decide to remove EfficientNetB7() with weights = &apos;imagenet&apos;, InceptionV3() and RasNet152V2() from the list of usable models because their accuracy is the relatively low among all in both rounds now.</p>
+                        <!-- TODO: <code> -->
+                        <p>We also decide to remove EfficientNetB7() with weights =
+                        &apos;imagenet&apos;, InceptionV3() and RasNet152V2() from the list of
+                        usable models because their accuracy is the relatively low among all in both
+                        rounds now.</p>
 
                         <!-- Modification 3 -->
                         <a name="mod3"></a>
                         <h2>🚀 Modification 3: Change Optimizers</h2>
-                        <p>How about optimizers? What are some optimizers that are available and maybe have a better performance? Because we do have time limitation on running with TPUs, we cannot train on every model that we found in the first modifications. We will start with Xception() for now because of its faster runtime among all models with relatively high accuracy.</p>
-                        <p>Before we get started exploring, there is some notes on choosing the optimizers. Even though we have decided to not continue with training with class weights calculated from training dataset, there is still some facts we found out about our data. Namely, our dataset is imbalanced. So it is possible that some optimizers will perform worse than Adam (in the starter code), which is okay because we can always go back to it. But let&apos;s start experimenting first:</p>
+                        <p>How about optimizers? What are some optimizers that are available and
+                        maybe have a better performance? Since we do have time limitation on running
+                        with TPUs, we cannot train on every model that we found in the first
+                        modifications. We will start with <code>Xception()</code> for now because of its faster
+                        runtime among all models with relatively high accuracy.</p>
+                        <p>Before we get started exploring, there is some notes on choosing the
+                        optimizers. Even though we have decided to not continue with training with
+                        class weights calculated from training dataset, there is still some facts we
+                        found out about our data. Namely, our dataset is imbalanced. So it is
+                        possible that some optimizers will perform worse than Adam (in the starter
+                        code), which is okay because we can always go back to it. But let&apos;s
+                        start experimenting first:</p>
                         <pre><code class="language-python">
 model.compile(
     optimizer='adam',
@@ -407,19 +406,64 @@ model.compile(
                             </div>
                         </div>
                         <p>Again, let&apos;s do a comparison of the optimizers with relatively high accuracy on validation set:</p>
-                        <ul>
-                            <li>Adam: f1 = 0.936, precision = 0.944, recall = 0.932</li>
-                            <li>Adamax: f1 = 0.921, precision = 0.933, recall = 0.918</li>
-                            <li>Nadam: f1 = 0.937, precision = 0.942, recall = 0.936</li>
-                            <li>RMSprop: f1 = 0.937, precision = 0.941, recall = 0.937</li>
-                        </ul>
-                        <p>The improvements by changing the optimizers is not significant either. Since we cannot predict how the optimizers will perform on DenseNet201() and EfficientNetB7(), we will stick with Adam, which we know for sure that have a good performance on the other two models.</p>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">F1</th>
+                                <th scope="col">Precision</th>
+                                <th scope="col">Recall</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Adam</td>
+                                <td>0.936</td>
+                                <td>0.944</td>
+                                <td>0.932</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>Adamax</td>
+                                <td>0.921</td>
+                                <td>0.933</td>
+                                <td>0.918</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>Nadam</td>
+                                <td>0.937</td>
+                                <td>0.942</td>
+                                <td>0.936</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">4</th>
+                                <td>RMSprop</td>
+                                <td>0.937</td>
+                                <td>0.941</td>
+                                <td>0.937</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        <p><strong>The improvements by changing the optimizers is not significant
+                        either.</strong> Since we cannot predict how the optimizers will perform on
+                        <code>DenseNet201()</code> and EfficientNetB7(), we will stick with Adam, which we know
+                        for sure that have a good performance on the other two models.</p>
 
                         <!-- Modification 4 -->
                         <a name="mod4"></a>
                         <h2>🎨 Modification 4: Mix Models</h2>
-                        <p>We want to try out mix and match models together. We have reduced our models to 3 now (Xception(), DenseNet201(), and EfficientNetB7()), so there will be 2! = 3 combinations of models. We examine each pair, and compare their performance.</p>
-                        <p>We need to build and train each model separately first, which is the same code we have been using for modification 1. Next, we need to find the best_alpha to set the weight between the two models. We adapted the code from this <a href="https://www.kaggle.com/wrrosa/tpu-enet-b7-densenet#Finding-best-alpha">notebook</a> on how to calculate the alpha that works the best.</p>
+                        <p>We want to try out mix and match models together. We have reduced our
+                        models to 3 now (<code>Xception()</code>, <code>DenseNet201()</code>, and
+                        <code>EfficientNetB7()</code>), so there will be 2! = 3 combinations of
+                        models. We examine each pair, and compare their performance.</p>
+                        <p>We need to build and train each model separately first, which is the same
+                        code we have been using for modification 1. Next, we need to find the
+                        <code>best_alpha</code> to set the weight between the two models<a
+                        href="https://www.kaggle.com/wrrosa/tpu-enet-b7-densenet#Finding-best-alpha"><sup>[10]</sup></a>
+                        </p>
                         <div class="row justify-content-center align-items-center">
                             <div class="col-4">
                                 <img class="img-fluid" src="assets/img/mod4/xcepDense2.png" alt="Xception() + DenseNet201() Combo" />
@@ -435,13 +479,46 @@ model.compile(
                             </div>
                         </div>
                         <p>Let&apos;s do another round of comparisons on these three combinations:</p>
-                        <ul>
-                            <li>Xception() + DenseNet201(): f1 = 0.95, precision = 0.952, recall = 0.952 </li>
-                            <li>Xception() + EfficientNetB7(): f1 = 0.961, precision = 0.962, recall = 0.962</li>
-                            <li>DenseNet201() + EfficientNetB7(): f1 = 0.956, precision = 0.954, recall = 0.960</li>
-                        </ul>
-                        <p>Seems like the Xception() + EfficientNetB7() performs the best. Let&apos;s submit that! Indeed, the combination of Xception() and EfficientNetB7() gives us the best result we have so far in the competition -- a score of 0.95303!</p>
-                        <p>As for reference, the score by submitting DenseNet201() + EfficientNetB7() is 0.94967, which is also pretty good, but not as big as an improvement compared to the combination above: Xception() + EfficientNetB7(). We will stick with this combo for now.</p>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">F1</th>
+                                <th scope="col">Precision</th>
+                                <th scope="col">Recall</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Xception() + DenseNet201()</td>
+                                <td>0.95</td>
+                                <td>0.952</td>
+                                <td>0.952</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>Xception() + EfficientNetB7()</td>
+                                <td>0.961</td>
+                                <td>0.962</td>
+                                <td>0.962</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>DenseNet201() + EfficientNetB7()</td>
+                                <td>0.956</td>
+                                <td>0.954</td>
+                                <td>0.960</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        <p>Seems like the <strong>the combination of <code>Xception()</code> and
+                            <code>EfficientNetB7()</code> gives us the best result we have so far in the competition
+                        -- a score of 0.95303!</strong></p>
+                        <p>For reference, the score by submitting <code>DenseNet201()</code> +
+                            <code>EfficientNetB7()</code> is 0.94967, which is also pretty good, but not as significant compared to the combination above: <code>Xception()</code> +
+                        <code>EfficientNetB7()</code>. We will stick with this combo for now.</p>
                         <img class="img-fluid" src="assets/img/mod4/mod4-score.png" alt="scores after mod4" />
                         <span class="caption text-muted">Submission Scores after Modification 4</span>
                         <br>
@@ -517,9 +594,9 @@ model.compile(
                         <p>In the end, after exhausting all the TPU quotas we have, we made 7 submissions to the competitions:</p>
                         <ul>
                             <li>Version 1: Starter code, score 0.04083</li>
-                            <li>Version 3: DenseNet201(), score 0.94145</li>
-                            <li>Version 9: mix DenseNet201() + EfficientNetB7(&apos;noisy-student&apos;), score 0.94967</li>
-                            <li>Version 11: mix Xception() + EfficientNetB7(&apos;noisy-student&apos;), score 0.95303</li>
+                            <li>Version 3: <code>DenseNet201()</code>, score 0.94145</li>
+                            <li>Version 9: mix <code>DenseNet201()</code> + <code>EfficientNetB7(&apos;noisy-student&apos;)</code>, score 0.94967</li>
+                            <li>Version 11: mix <code>Xception()</code> + , score 0.95303</li>
                             <li>Version 12: random blocking + version 11, score 0.95462</li>
                             <li>Version 15: 20 EPOCHS + version 12, score 0.95417 </li>
                             <li>Version 18: extra training data + version 12, score 0.95901&nbsp;</li>
