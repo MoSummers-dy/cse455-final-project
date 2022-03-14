@@ -62,7 +62,13 @@
                         <a name="summary"></a>
                         <h1>Summary</h1>
                         <p>
-                            we competed in a Kaggle competition <a href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a> to develop a classifier that classifies 104 types of flowers. We started out with provided code using a convolution neural net (CNN) architecture called VGG16 to train the model with transfer training, and deployed seven different big modifications to increase the performance of the classifier:
+                            we competed in a Kaggle competition <a
+                            href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a>
+                            to develop a classifier that classifies 104 types of flowers. We started
+                            with provided code using a convolution neural net (CNN) architecture
+                            called VGG16 to train the model with transfer training, and deployed
+                            seven different significant modifications to increase the performance of
+                            the classifier:
                         </p>
                         <a name="list"><span class="caption text-muted">Click to go to specific modification</span></a>
                         <ul>
@@ -75,32 +81,74 @@
                             <li><a href="#mod7">Modification 7: Incorporate external data</a></li>
                         </ul>
                         <p>
-                            We compare the models based on their f1-score, precision and recall on their predictions on the validation set. Our best model is a combination of Xception and EfficientNet architecture, with extra training data and images augmented with random blocking. That places us in 25th on the leaderboard with a score of 0.95901, which improved a lot compared to the starter code, which has a score of 0.04083. We also discuss the challenges and takeaways of the project.
+                            We compare the models based on their f1-score, precision, and recall on
+                            their predictions on the validation set. Our best model is a combination
+                            of Xception and EfficientNet architecture, with extra training data and
+                            images augmented with random blocking. The starter code has a score of
+                            0.04083, while our best model got a score of 0.95901, which places us in
+                            24th on the leaderboard. We also discuss the challenges and takeaways
+                            towards the end of this report.
                         </p>
-                        <p>
-                            Source code for our best model is in this <a href="https://github.com/MoSummers-dy/cse455-final-project/blob/main/iter7-extra-training.ipynb">Jupyter Notebook</a> which is also available on Kaggle Notebook <a href="https://www.kaggle.com/mosummers/petals-to-the-metal-cv-project">here</a>.
-                            You can check out different versions of the notebook for various modifications. A lot of intermediate epoch records and experiments are removed from the blog, but check <a href="https://docs.google.com/document/d/1W8seR7kPzklhTNjTv2NAMuiUA9yCf88763LlOnq8Dw8/edit?usp=sharing">this</a> out if you are interested.
-                        </p>
-                        <p>For a video summary of this project, please see&nbsp;below. A detailed video walk-through is also available&nbsp;<a href="https://youtu.be/4WblQduKdqE">here</a>.&nbsp;</p>
+                        <p>For a video summary of this project, please see&nbsp;below.
+                            A detailed video walk-through is also available&nbsp;
+                            <a href="https://youtu.be/4WblQduKdqE">here</a>.&nbsp;</p>
+                        <!-- TODO -->
                         <p>[Insert YouTube Video Frame]</p>
+                        <p>
+                            Source code for our best model is in this
+                            <a href="https://github.com/MoSummers-dy/cse455-final-project/blob/main/iter7-extra-training.ipynb">
+                                Jupyter Notebook
+                            </a>
+                            or in this Kaggle Notebook
+                            <a href="https://www.kaggle.com/mosummers/petals-to-the-metal-cv-project">
+                                here
+                            </a>.
+                            Different versions of the notebook shows our various modifications.
+                            We also recorded intermediate epoch records and experiments for reference
+                            <a href="https://docs.google.com/document/d/1W8seR7kPzklhTNjTv2NAMuiUA9yCf88763LlOnq8Dw8/edit?usp=sharing">
+                                here
+                            </a>.
+                        </p>
 
                         <!-- Motivation & Setup -->
                         <a name="setup"></a>
                         <h1>Motivation & Setup</h1>
-                        <p>This project is from a&nbsp;<a href="https://www.kaggle.com/c/tpu-getting-started">Petals to the Metal</a> Kaggle competition. There are a lot of species in nature, for over 5,000 species of mammals, 10,000 species of birds, and 30,000 species of fish. How about some plants? Well, we have over 400,000 different types of flowers! Incredible! For this competition, each team is challenged to build a machine learning model that identifies the type of flowers in a dataset of images. The good news is, we will have just over 100 types, so the work is easier.</p>
-                        <p>Our project builds upon&nbsp;<a href="https://www.kaggle.com/ryanholbrook/create-your-first-submission">Ryan&apos;s notebook</a> on how to build an image classifier in Keras and train it on Tensor Processing Unit (TPU). We then expand from there to train with other models and techniques with ideas of our own.</p>
-                        <p>A TPU has eight different cores and each of these cores acts as its own accelerator. A TPU is a sort of like having eight GPUs in one machine. We used TPUs for this challenge because these are equipped with 128 GB high-speed memory, so even with 512x512 pixels input images (provided in the dataset as well), TPU can handle these properly. Read more about TPU&nbsp;<a href="https://www.kaggle.com/docs/tpu">here</a>.</p>
+                        <p>This project is from a&nbsp;<a
+                        href="https://www.kaggle.com/c/tpu-getting-started"> Petals to the Metal </a>
+                        Kaggle competition. There are a lot of species in nature, for over 5,000
+                        species of mammals, 10,000 species of birds, and 30,000 species of fish. How
+                        about some plants? Well, we have over 400,000 different types of flowers!
+                        Incredible! For this competition, each team is challenged to build a machine
+                        learning model that identifies the type of flowers in a dataset of images.
+                        The good news is, we will have just over 100 types, so the work is
+                        easier.</p>
+                        <p>Our project builds upon&nbsp; Ryan&apos;s notebook
+                            <a href="https://www.kaggle.com/ryanholbrook/create-your-first-submission">
+                            <sup>[2]</sup></a>
+                             on how to build an image classifier in Keras and train it on Tensor
+                             Processing Unit (TPU). We then expand from there
+                            to train with other models and techniques with ideas of our own.</p>
+                        <p>
+                            A TPU <a href="https://www.kaggle.com/docs/tpu"><sup>[3]</sup></a>
+                            has eight different cores, and each of these cores acts as its own
+                        accelerator. A TPU is sort of like having eight GPUs on one machine. We
+                        used TPUs for this challenge because these are equipped with 128 GB
+                        high-speed memory, so even with 512x512 pixels input images (provided in the
+                        dataset as well), TPU can handle these properly.
+                        </p>
 
                         <!-- Dataset -->
                         <a name="data"></a>
                         <h1>Dataset</h1>
-                        <p>The Kaggle competition provides&nbsp;<a href="https://www.kaggle.com/c/tpu-getting-started/data">data</a> in&nbsp;<a href="https://www.kaggle.com/ryanholbrook/tfrecords-basics">TFRecords</a> format, which fits well into TPUs. We have:</p>
+                        <p>The Kaggle competition provides&nbsp; data <a
+                        href="https://www.kaggle.com/c/tpu-getting-started/data"><sup>[4]</sup></a>
+                        in&nbsp; TFRecords <a href="https://www.kaggle.com/ryanholbrook/tfrecords-basics"><sup>[5]</sup></a> format, which fits well into TPUs. We have:</p>
                         <ul>
                             <li>train/*.tfrec - training samples, including labels.
                             </li>
                             <li>val/*.tfrec - pre-split training samples w/ labels intended to help with checking your model&apos;s performance on TPU. The split was stratified across labels.
                             </li>
-                            <li>test/*.tfrec - samples without labels - you&apos;ll be predicting what classes of flowers these fall into.
+                            <li>test/*.tfrec - samples without labels - we&apos;ll be predicting what classes of flowers these fall into.
                             </li>
                             <li>sample_submission.csv - a sample submission file in the correct format
                             </li>
@@ -116,19 +164,39 @@
                         <!-- Techniques & Evaluations  -->
                         <a name="tech"></a>
                         <h1>Techniques & Evaluations</h1>
-                        <p>Now we&apos;re ready to create a neural network for classifying images! We&apos;ll use what&apos;s known as transfer learning. With transfer learning, you reuse part of a pre-trained model to get a head-start on a new dataset.&nbsp;</p>
-                        <p>For the starter code, it uses a model called VGG16 pre-trained on ImageNet). However, the accuracy on the validation set is only about 22%, which is far below what we want. Let us try other models to make it better.</p>
+                        <p>Now we&apos;re ready to create a neural network for classifying images!
+                        We&apos;ll use what&apos;s known as transfer learning. With transfer
+                        learning, we reuse part of a pre-trained model to get a head-start on a new dataset.&nbsp;</p>
+                        <p>For the starter code, it uses a model called VGG16 (pre-trained on
+                        ImageNet <a
+                        href="https://image-net.org/"><sup>[6]</sup></a>).
+                        However, the accuracy on the validation set is only about 22%, which is far
+                        below what we want. Let us try other models to make it better.</p>
                         <p>
-                            Before making the final predictions on the test set, it's a good idea to evaluate model's predictions on the validation set. This can help diagnose problems in training or suggest ways the model could be improved. We'll look at two common ways of validation: plotting the confusion matrix and visual validation.
-                            A confusion matrix shows the actual class of an image tabulated against its predicted class. It is one of the best tools for evaluating the performance of a classifier.
-                            It can also be helpful to look at some examples from the validation set and see what class the model predicted. This can help reveal patterns in the kinds of images the model has trouble with.
+                            Before making the final predictions on the test set, it's a good idea to
+                            evaluate model's predictions on the validation set. This can help
+                            diagnose problems in training or suggest ways the model could be
+                            improved. We'll look at two common ways of validation: plotting the
+                            confusion matrix and visual validation.
+                            A confusion matrix shows the actual class of an image tabulated against
+                            its predicted class. It is one of the best tools for evaluating the
+                            performance of a classifier.
+                            It can also be helpful to look at some examples from the validation set
+                            and see what class the model predicted. This can help reveal patterns in
+                            the kinds of images the model has trouble with.
                         </p>
 
                         <!-- Modification 1 -->
                         <a name="mod1"></a>
                         <h2>🔔 Modification 1: Train with Other Models</h2>
                         <p>We want to experiment with other models included with Keras.</p>
-                        <p>We start simple. We stick with VGG16 for now, but we would like to change the trainable attribute so that it unfreezes the layers and keep changing the values. Read more&nbsp;<a href="https://www.tensorflow.org/guide/keras/transfer_learning">here</a>. After training, we do see slight improvements and the accuracy of the validation set goes from 22% to 26%. We decided to move on with Trainable=True for now with other models.</p>
+                        <p>We start simple. We stick with VGG16 for now, but we would like to change
+                        the trainable attribute so that it unfreezes the layers and keep changing
+                        the values. Read more&nbsp;<a
+                        href="https://www.tensorflow.org/guide/keras/transfer_learning">here</a>.
+                        After training, we do see slight improvements and the accuracy of the
+                        validation set goes from 22% to 26%. We decided to move on with
+                        Trainable=True for now with other models.</p>
                         <p>We then continue to train with VGG19, Xception, DenseNet201, EfficientNetB7, InceptionV3, MobileNetV3Small, NASNetMobile and ResNet152V2.&nbsp;</p>
                         <div class="row justify-content-center align-items-center">
                             <div class="col-4">
