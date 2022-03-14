@@ -89,23 +89,26 @@
                             23th on the leaderboard.</strong> We also discuss the challenges and takeaways
                             towards the end of this report.
                         </p>
+                        <p>
+                            Source code for our best model (see history versions of the notebook shows our various modifications):
+                            <ul>
+                                <li><a href="https://github.com/MoSummers-dy/cse455-final-project/blob/main/iter7-extra-training.ipynb">
+                                    Jupyter Notebook</a></li>
+                                <li><a
+                                href="https://www.kaggle.com/mosummers/petals-to-the-metal-cv-project">
+                                    Kaggle Notebook</a></li>
+                                <li>
+                                    <a href="https://docs.google.com/document/d/1W8seR7kPzklhTNjTv2NAMuiUA9yCf88763LlOnq8Dw8/edit?usp=sharing">
+                                        Intermediate epoch records and experiments</a>
+                                </li>
+                            </ul>
+                        </p>
+
                         <p>For a video summary of this project, please see&nbsp;below.
                             A detailed video walk-through is also available&nbsp;
                             <a href="https://youtu.be/4WblQduKdqE">here</a>.&nbsp;</p>
                         <!-- TODO -->
                         <p>[Insert YouTube Video Frame]</p>
-                        <p>
-                            Source code for our best model is in this
-                            <a href="https://github.com/MoSummers-dy/cse455-final-project/blob/main/iter7-extra-training.ipynb">
-                                Jupyter Notebook</a>
-                            or in this Kaggle Notebook
-                            <a href="https://www.kaggle.com/mosummers/petals-to-the-metal-cv-project">
-                                here</a>.
-                            Different versions of the notebook shows our various modifications.
-                            We also recorded intermediate epoch records and experiments for reference
-                            <a href="https://docs.google.com/document/d/1W8seR7kPzklhTNjTv2NAMuiUA9yCf88763LlOnq8Dw8/edit?usp=sharing">
-                                here</a>.
-                        </p>
 
                         <!-- Motivation & Setup -->
                         <a name="setup"></a>
@@ -671,6 +674,16 @@ model.compile(
                         </div>
                         <br>
 
+                        <!-- Potential Modification 8 -->
+                        <h2>🥇 (Potential) Modification 8: Find Best Optimizer for Each Model</h2>
+                        <p>In 🚀 Modification 3, we experiment with different optimizers on
+                        <code>Xception()</code> model and use the result as a general rule for other
+                        models as well. This may not be true, though. If time allows, we will also
+                        figure out the best optimizer for each of <code>Xception()</code>,
+                        <code>DenseNet201()</code> and <code>EfficientNetB7()</code> architectures.
+                        Unfortunately, we are running out of our TPU quotas, so we cannot test it
+                        out at this point.</p>
+
                         <!-- Submissions -->
                         <h2>Submissions&nbsp;</h2>
                         <p>In the end, after exhausting all the TPU quotas we have, we made 7 submissions to the competitions:</p>
@@ -686,16 +699,6 @@ model.compile(
                         <img class="img-fluid" src="assets/img/mod7/ver18-score.png" alt="best score" />
                         <span class="caption text-muted">Best Score, Rank #25</span>
                         <br>
-
-                        <!-- Potential Modification 8 -->
-                        <h2>🥇 (Potential) Modification 8: Find Best Optimizer for Each Model</h2>
-                        <p>In 🚀 Modification 3, we experiment with different optimizers on
-                        <code>Xception()</code> model and use the result as a general rule for other
-                        models as well. This may not be true, though. If time allows, we will also
-                        figure out the best optimizer for each of <code>Xception()</code>,
-                        <code>DenseNet201()</code> and <code>EfficientNetB7()</code> architectures.
-                        Unfortunately, we are running out of our TPU quotas, so we cannot test it
-                        out at this point.</p>
 
                         <!-- Challenges & Takeaways -->
                         <a name="takeaway"></a>
@@ -739,6 +742,7 @@ model.compile(
                         <!-- Video -->
                         <a name="video"></a>
                         <h1>VI. Video</h1>
+                        <br>
                         <iframe width="722" height="361" src="https://www.youtube.com/embed/4WblQduKdqE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <br>
 
