@@ -57,12 +57,12 @@
                         </nav>
                     </div>
                     <div class="col" id="main">
-                        
+
                         <!-- Summary -->
                         <a name="summary"></a>
                         <h1>Summary</h1>
                         <p>
-                            In this project, we competed in a <a href="https://www.kaggle.com/c/tpu-getting-started/overview">Kaggle competition</a> to develop a classifier that classifies 104 types of flowers. We started out with provided code using a convolution neural net (CNN) architecture called VGG16 to train the model with transfer training, and deployed seven different big modifications to increase the performance of the classifier:
+                            we competed in a Kaggle competition <a href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a> to develop a classifier that classifies 104 types of flowers. We started out with provided code using a convolution neural net (CNN) architecture called VGG16 to train the model with transfer training, and deployed seven different big modifications to increase the performance of the classifier:
                         </p>
                         <a name="list"><span class="caption text-muted">Click to go to specific modification</span></a>
                         <ul>
@@ -79,7 +79,7 @@
                         </p>
                         <p>
                             Source code for our best model is in this <a href="https://github.com/MoSummers-dy/cse455-final-project/blob/main/iter7-extra-training.ipynb">Jupyter Notebook</a> which is also available on Kaggle Notebook <a href="https://www.kaggle.com/mosummers/petals-to-the-metal-cv-project">here</a>.
-                            You can check out different versions of the notebook for various modifications. A lot of intermediate epoch records and experiments are removed from the blog, but check <a href="https://docs.google.com/document/d/1W8seR7kPzklhTNjTv2NAMuiUA9yCf88763LlOnq8Dw8/edit?usp=sharing">this</a> out if you are interested. 
+                            You can check out different versions of the notebook for various modifications. A lot of intermediate epoch records and experiments are removed from the blog, but check <a href="https://docs.google.com/document/d/1W8seR7kPzklhTNjTv2NAMuiUA9yCf88763LlOnq8Dw8/edit?usp=sharing">this</a> out if you are interested.
                         </p>
                         <p>For a video summary of this project, please see&nbsp;below. A detailed video walk-through is also available&nbsp;<a href="https://youtu.be/4WblQduKdqE">here</a>.&nbsp;</p>
                         <p>[Insert YouTube Video Frame]</p>
@@ -90,7 +90,7 @@
                         <p>This project is from a&nbsp;<a href="https://www.kaggle.com/c/tpu-getting-started">Petals to the Metal</a> Kaggle competition. There are a lot of species in nature, for over 5,000 species of mammals, 10,000 species of birds, and 30,000 species of fish. How about some plants? Well, we have over 400,000 different types of flowers! Incredible! For this competition, each team is challenged to build a machine learning model that identifies the type of flowers in a dataset of images. The good news is, we will have just over 100 types, so the work is easier.</p>
                         <p>Our project builds upon&nbsp;<a href="https://www.kaggle.com/ryanholbrook/create-your-first-submission">Ryan&apos;s notebook</a> on how to build an image classifier in Keras and train it on Tensor Processing Unit (TPU). We then expand from there to train with other models and techniques with ideas of our own.</p>
                         <p>A TPU has eight different cores and each of these cores acts as its own accelerator. A TPU is a sort of like having eight GPUs in one machine. We used TPUs for this challenge because these are equipped with 128 GB high-speed memory, so even with 512x512 pixels input images (provided in the dataset as well), TPU can handle these properly. Read more about TPU&nbsp;<a href="https://www.kaggle.com/docs/tpu">here</a>.</p>
-                        
+
                         <!-- Dataset -->
                         <a name="data"></a>
                         <h1>Dataset</h1>
@@ -112,7 +112,7 @@
                                 <span class="caption text-muted">Flowers from the Training Dataset</span>
                             </div>
                         </div>
-                        
+
                         <!-- Techniques & Evaluations  -->
                         <a name="tech"></a>
                         <h1>Techniques & Evaluations</h1>
@@ -123,7 +123,7 @@
                             A confusion matrix shows the actual class of an image tabulated against its predicted class. It is one of the best tools for evaluating the performance of a classifier.
                             It can also be helpful to look at some examples from the validation set and see what class the model predicted. This can help reveal patterns in the kinds of images the model has trouble with.
                         </p>
-                        
+
                         <!-- Modification 1 -->
                         <a name="mod1"></a>
                         <h2>🔔 Modification 1: Train with Other Models</h2>
@@ -218,7 +218,7 @@ model.compile(
 #     optimizer = 'SGD',
     loss = 'sparse_categorical_crossentropy',
     metrics=['sparse_categorical_accuracy'],
-)                            
+)
                         </code></pre>
                         <div class="row justify-content-center align-items-center">
                             <div class="col-4">
@@ -359,7 +359,7 @@ model.compile(
                         <!-- Potential Modification 8 -->
                         <h2>🥇 Potential Modification 8: Find Best Optimizer for Each Model</h2>
                         <p>In 🚀 Modification 3, we experiment with different optimizers on Xception() model and use the result as a general rule for other models as well. This may not be true, though. If time allows, we will also figure out the best optimizer for each of Xception(), DenseNet201() and EfficientNetB7() architectures. Unfortunately, we are running out of our TPU quotas, so we cannot test it out at this point.</p>
-                        
+
                         <!-- Challenges & Takeaways -->
                         <a name="takeaway"></a>
                         <h1>Challenges & Takeaways</h1>
