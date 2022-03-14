@@ -117,7 +117,7 @@
                         learning model that identifies the type of flowers in a dataset of images.
                         The good news is, we will have just over 100 types, so the work is
                         easier.</p>
-                        <p>Our project builds upon&nbsp; Ryan&apos;s notebook
+                        <p>Our project builds upon&nbsp;Ryan&apos;s notebook
                             <a href="https://www.kaggle.com/ryanholbrook/create-your-first-submission">
                             <sup>[2]</sup></a>
                              on how to build an image classifier in Keras and train it on Tensor
@@ -221,16 +221,54 @@
                                 <span class="caption text-muted">Xception() Visual Validation</span>
                             </div>
                         </div>
-                        <p>Some of these models perform worse than VGG16, such as VGG 19 (15.17% accuracy on validation set), while others do have a big jump. Let&apos;s do a quick comparisons for models that perform with an accuracy higher than 85% on validation set:</p>
-                        <ul>
-                            <li>Xception(): f1 = 0.936, precision = 0.944, recall = 0.932</li>
-                            <li>DenseNet201(): f1 = 0.942, precision = 0.944, recall = 0.944</li>
-                            <li>EfficientNetB7() with weights = &apos;imagenet&apos;: f1 = 0.895, precision = 0.901, recall = 0.895</li>
-                            <li>InceptionV3(): f1 = 0.925, precision = 0.930, recall = 0.926</li>
-                            <li>RasNet152V2(): f1 = 0.898, precision = 0.912, recall = 0.891</li>
-                            <li>EfficientNetB7() with weights = &apos;noisy-student&apos;: f1 = 0.949, 0.948, 0.955</li>
-                        </ul>
-                        <p>One thing to note is that when we were experimenting with our ⚖️ Modification 2, we came across a blog, which says how the performance can be improved if we changed the value assigned to the weights attribute. Interestingly, the Keras library does not allow us to modify the weights to be &apos;noisy-student&apos;. So we need to import efficientNet and go from there. The accuracy improved a lot (from 90% to 95%) by changing the weights from &lsquo;imagenet&rsquo; to &lsquo;noisy-student&rsquo;! It seems like noisy-student is a better weight to be used for EfficientNetB7(). We will use it from now on.</p>
+                        <p>Some of these models perform worse than VGG16, such as VGG 19 (15.17%
+                        accuracy on validation set), while others do have notable improvements. Let&apos;s do
+                        a quick comparisons for models that perform with an accuracy higher than 85%
+                        on validation set:</p>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">F1</th>
+                                <th scope="col">Precision</th>
+                                <th scope="col">Recall</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Xception</td>
+                                <td>0.936</td>
+                                <td>0.944</td>
+                                <td>0.932</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>DenseNet201s</td>
+                                <td>0.942</td>
+                                <td>0.944</td>
+                                <td>0.944</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>* EfficientNetB7</td>
+                                <td>0.895</td>
+                                <td>0.901</td>
+                                <td>0.895</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        <p>* EfficientNetB7 with weights = &apos;imagenet&apos;</p>
+                        <p>One thing to note is that when we were experimenting with our ⚖️
+                        Modification 2, we came across a blog saying how the performance can be
+                        improved if we changed the value assigned to the weights attribute.
+                        Unfortunately, the Keras library does not support &apos;noisy-student&apos;
+                        weights. So we need to import efficientNet and go from
+                        there. The accuracy improved a lot (from 90% to 95%) by changing the weights
+                        from &lsquo;imagenet&rsquo; to &lsquo;noisy-student&rsquo;! It seems like
+                        noisy-student is a better weight to be used for EfficientNetB7. We will
+                        use it from now on.</p>
 
                         <!-- Modification 2 -->
                         <a name="mod2"></a>
