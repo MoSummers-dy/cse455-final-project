@@ -64,10 +64,10 @@
                         <p>
                             We competed in a Kaggle competition<a
                             href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a>
-                            to develop a classifier that classifies 104 types of flowers. We started
+                            to classify 104 types of flowers. We started
                             with provided code using a <strong>convolution neural net (CNN)</strong> architecture
                             <code>VGG16</code> to train the model with transfer training, and deployed
-                            <strong>seven different significant modifications</strong> to increase the performance of
+                            <strong>seven significant modifications</strong> to increase the performance of
                             the classifier:
                         </p>
                         <ul>
@@ -106,8 +106,12 @@
 
                         <p>For a video summary of this project, please see&nbsp;below.
                         A detailed video walk-through is also available at the end of the report.&nbsp;</p>
-                        <!-- TODO -->
-                        <p>[Insert YouTube Video Frame]</p>
+                        <p>
+                          <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/1OHn5oMLBBA" title="YouTube video player"
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+                        encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </p>
 
                         <!-- Motivation & Setup -->
                         <a name="setup"></a>
@@ -136,9 +140,9 @@
                         <!-- Dataset -->
                         <a name="data"></a>
                         <h1>III. Dataset</h1>
-                        <p>The Kaggle competition provides&nbsp; data<a
+                        <p>The Kaggle competition provides data<a
                         href="https://www.kaggle.com/c/tpu-getting-started/data"><sup>[4]</sup></a>
-                        in&nbsp; TFRecords<a href="https://www.kaggle.com/ryanholbrook/tfrecords-basics"><sup>[5]</sup></a> format, which fits well into TPUs. We have:</p>
+                         in TFRecords<a href="https://www.kaggle.com/ryanholbrook/tfrecords-basics"><sup>[5]</sup></a> format, which fits well into TPUs. We have:</p>
                         <ul>
                             <li>train/*.tfrec - training samples, including labels.
                             </li>
@@ -172,7 +176,7 @@
                             Before making the final predictions on the test set, it's a good idea to
                             evaluate model&apos;s predictions on the validation set. This can help
                             diagnose problems in training or suggest ways the model could be
-                            improved. <strong>We&apos;ll look at two common ways of validation: plotting the
+                            improved. <strong>We&apos;ll look at two common ways of validation:
                             confusion matrix and visual validation.</strong>
                             A confusion matrix shows the actual class of an image tabulated against
                             its predicted class. It is one of the best tools for evaluating the
@@ -273,7 +277,7 @@
                         <!-- Modification 2 -->
                         <a name="mod2"></a>
                         <h2>⚖️ Modification 2: Calculate Weights</h2>
-                        <p>For this modification, the idea is to adjust the weights to
+                        <p>For this modification, the idea is to add weights to
                         &quot;pay more attention&quot; to the under-represented classes that only
                         have a small amount of available samples.</p>
                         <p>Inside Keras&apos;s <code>model.fit()</code>, there is an attribute called <code>class_weight</code><a
@@ -370,7 +374,7 @@ history = model.fit(
                         <a name="mod3"></a>
                         <h2>🚀 Modification 3: Change Optimizers</h2>
                         <p>How about optimizers? What are some optimizers that are available and
-                        maybe have a better performance? Since we do have time limitation on running
+                        maybe have a better performance? Since we have a time limitation on running
                         with TPUs, we cannot train on every model that we found in the first
                         modifications. We will start with <code>Xception()</code> for now because of its faster
                         runtime among all models with relatively high accuracy.</p>
@@ -414,7 +418,7 @@ model.compile(
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Model</th>
+                                <th scope="col">Optimizer</th>
                                 <th scope="col">F1</th>
                                 <th scope="col">Precision</th>
                                 <th scope="col">Recall</th>
@@ -451,7 +455,7 @@ model.compile(
                               </tr>
                             </tbody>
                           </table>
-                        <p><strong>The improvements by changing the optimizers is not significant
+                        <p><strong>The improvements are not significant
                         either.</strong> Since we cannot predict how the optimizers will perform on
                         <code>DenseNet201()</code> and <code>EfficientNetB7()</code>, we will stick with Adam, which we know
                         for sure that have a good performance on the other two models.</p>
@@ -532,9 +536,9 @@ model.compile(
                         <!-- Modification 5 -->
                         <a name="mod5"></a>
                         <h2>🚧 Modification 5: Augment Images</h2>
-                        <p>In the provided starter code, only one simple data augmentation is done,
-                        which is to flip the image horizontally. We encounter two interesting image
-                        augmentations, both of which involve some randomness. Let&apos;s test it out.</p>
+                        <p>The provided starter code only use one simple data augmentation,
+                        which is to flip the image horizontally. <strong>We encounter two interesting image
+                        augmentations, both of which involve some randomness.</strong> Let&apos;s test them out.</p>
                         <h3>5.1 Random Blockout</h3>
                         <p>The first image augmentation is adapted from Dmitry&apos;s
                             notebook<a
@@ -546,7 +550,7 @@ model.compile(
                                 <span class="caption text-muted">Random Blocking</span>
                             </div>
                         </div>
-                        <h3>5.2 Random Modifications to Images</h3>
+                        <h3>5.2 Random Modifications</h3>
                         <p>The second augmentation is adapted
                             from Xuanzhi Huang and Rahul Paul&apos;s notebook<a
                             href="https://www.kaggle.com/xuanzhihuang/flower-classification-densenet-201"><sup>[12]</sup></a>.
@@ -587,10 +591,10 @@ model.compile(
                               </tr>
                             </tbody>
                           </table>
-                        <p>It seems like <strong>randomly changing the pictures decreases the
-                        accuracy significantly, but blocking some parts of the training images does
+                        <p>It seems like <strong>random modifications significantly decreases
+                        accuracy, while blocking some parts of the training images
                         help improve the accuracy by a little.</strong> We will keep that since it does give
-                        us better results when submitted to the competition -- 0.95462!</p>
+                        us better results: a score of 0.95462!</p>
                         <a href="#!"><img class="img-fluid" src="assets/img/mod5/ver12-score.png" alt="score after random blocking" /></a>
                         <span class="caption text-muted">Submission Score after Random Blocking</span>
                         <br>
@@ -730,7 +734,7 @@ model.compile(
                         of others.</p>
                         <p>Throughout this project, we learned about a lot of commonly used
                         architectures, optimizers, and data augmentation strategies. We also gained
-                        a lot more experience working with images and transfer training neural
+                        a lot more experience working with images and transfer learning neural
                         networks. It was a lot of fun to read and discuss ideas with other teams on
                         Kaggle. This is the first time we did a competition on Kaggle, and it was
                         definitely worth the time and effort we put in.</p>
