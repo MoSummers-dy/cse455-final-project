@@ -66,9 +66,9 @@
                             href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a>
                             to classify 104 types of flowers. We started
                             with provided code using a <strong>convolution neural net (CNN)</strong> architecture
-                            <code>VGG16</code> to train the model with transfer training, and deployed
+                            <code>VGG16</code> to train a classifier with transfer learning, and deployed
                             <strong>seven significant modifications</strong> to increase the performance of
-                            the classifier:
+                            the model:
                         </p>
                         <ul>
                             <li><a href="#mod1">Modification 1: Train with other models</a></li>
@@ -83,7 +83,7 @@
                         <p>
                             We compare the models based on their f1-score, precision, and recall on
                             their predictions on the validation set. <strong>Our best model is a combination
-                            of Xception and EfficientNet architecture, with extra training data and
+                            of <code>Xception</code> and <code>EfficientNet</code> architecture, with extra training data and
                             images augmented with random blocking.</strong> The starter code has a score of
                             0.04083, while <strong>our best model got a score of 0.95901, which places us in
                             23rd on the leaderboard.</strong> We also discuss the challenges and takeaways
@@ -768,7 +768,7 @@ model.compile(
                             <li>[10] Rosa, W. (2020, March 3). <i>TPU: Enet B7 + DenseNet.</i> Kaggle. Retrieved March 14, 2022, from https://www.kaggle.com/wrrosa/tpu-enet-b7-densenet#Finding-best-alpha </li>
                             <li>[11] Nokhrin, D. (2020, November 6). <i>DENSENET201 + aug + additional data.</i> Kaggle. Retrieved March 14, 2022, from https://www.kaggle.com/dmitrynokhrin/densenet201-aug-additional-data </li>
                             <li>[12] Huang, X. (2020, December 21). <i>Flower classification DenseNet 201.</i> Kaggle. Retrieved March 14, 2022, from https://www.kaggle.com/xuanzhihuang/flower-classification-densenet-201</li>
-                            <li>[14] Blinov, K. (2020, May 8).<i>Tf_flower_photo_tfrec.</i> Kaggle. Retrieved March 14, 2022, from https://www.kaggle.com/kirillblinov/tf-flower-photo-tfrec</li>
+                            <li>[14] Blinov, K. (2020, May 8). <i>Tf_flower_photo_tfrec.</i> Kaggle. Retrieved March 14, 2022, from https://www.kaggle.com/kirillblinov/tf-flower-photo-tfrec</li>
                             <li>[15] He, K., Zhang, X., Ren, S., &amp; Sun, J. (2016). <i>Deep residual learning for image recognition.</i> 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). https://doi.org/10.1109/cvpr.2016.90</li>
                         </ul>
                     </div>
