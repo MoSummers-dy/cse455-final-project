@@ -30,7 +30,7 @@
                             <h2 class="subheading">Flower Classification on TPU</h2>
                             <span class="meta">
                                 Written by
-                                <a href="#!">Diana Dai, Alisa Shi</a>
+                                <a href="#!">Diana Dai, Yuxiao Shi</a>
                                 on Mar 14, 2022
                             </span>
                         </div>
@@ -46,23 +46,23 @@
                     <div class="col-3 order-2" id="side-nav">
                         <nav class="nav navbar-header navbar-dark sticky-top flex-column py-3">
                             <ul>
-                                <li class="list-group-item list-group-item-action"><a href="#summary" class="nav-link">Summary</a></li>
-                                <li class="list-group-item list-group-item-action"><a href="#setup" class="nav-link">Motivation & Setup</a></li>
-                                <li class="list-group-item list-group-item-action"><a href="#data" class="nav-link">Dataset</a></li>
-                                <li class="list-group-item list-group-item-action"><a href="#tech" class="nav-link">Techniques & Evaluations</a></li>
-                                <li class="list-group-item list-group-item-action"><a href="#takeaway" class="nav-link">Challenges & Takeaways</a></li>
-                                <li class="list-group-item list-group-item-action"><a href="#video" class="nav-link">Detailed Video</a></li>
-                                <li class="list-group-item list-group-item-action"><a href="#ref" class="nav-link">References</a></li>
+                                <li class="list-group-item list-group-item-action"><a href="#overview" class="nav-link">I. Overview</a></li>
+                                <li class="list-group-item list-group-item-action"><a href="#setup" class="nav-link">II. Motivation & Setup</a></li>
+                                <li class="list-group-item list-group-item-action"><a href="#data" class="nav-link">III.Dataset</a></li>
+                                <li class="list-group-item list-group-item-action"><a href="#tech" class="nav-link">IV. Techniques & Evaluations</a></li>
+                                <li class="list-group-item list-group-item-action"><a href="#takeaway" class="nav-link">V. Challenges & Takeaways</a></li>
+                                <li class="list-group-item list-group-item-action"><a href="#video" class="nav-link">VI. Detailed Video</a></li>
+                                <li class="list-group-item list-group-item-action"><a href="#ref" class="nav-link">VII. References</a></li>
                             </ul>
                         </nav>
                     </div>
                 <div class="col" id="main">
 
-                        <!-- Summary -->
-                        <a name="summary"></a>
-                        <h1>I. Summary</h1>
+                        <!-- Overview -->
+                        <a name="overview"></a>
+                        <h1>I. Overview</h1>
                         <p>
-                            we competed in a Kaggle competition<a
+                            We competed in a Kaggle competition<a
                             href="https://www.kaggle.com/c/tpu-getting-started/overview"><sup>[1]</sup></a>
                             to develop a classifier that classifies 104 types of flowers. We started
                             with provided code using a <strong>convolution neural net (CNN)</strong> architecture
@@ -105,7 +105,7 @@
                         </p>
 
                         <p>For a video summary of this project, please see&nbsp;below.
-                        A detailed video walk-through is also available&nbsp; in the VI. Video section below.&nbsp;</p>
+                        A detailed video walk-through is also available at the end of the report.&nbsp;</p>
                         <!-- TODO -->
                         <p>[Insert YouTube Video Frame]</p>
 
@@ -222,7 +222,7 @@
                                 <span class="caption text-muted"><code>Xception()</code> Visual Validation</span>
                             </div>
                         </div>
-                        <p>Some of these models perform worse than VGG16, such as VGG 19 (15.17%
+                        <p>Some of these models perform worse than <code>VGG16</code>, such as <code>VGG10</code> (15.17%
                         accuracy on validation set), while others do have notable improvements. Let&apos;s do
                         a quick comparisons for models that perform with an accuracy higher than 85%
                         on validation set:</p>
