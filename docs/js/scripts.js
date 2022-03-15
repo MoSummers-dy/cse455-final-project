@@ -5,8 +5,8 @@
 */
 window.addEventListener('DOMContentLoaded', () => {
     let scrollPos = 0;
-    const mainNav = document.getElementById('mainNav');
-    const headerHeight = mainNav.clientHeight;
+    const mainNav = document.getElementById('side-nav');
+    const headerHeight = mainNav?.clientHeight;
     window.addEventListener('scroll', function() {
         const currentTop = document.body.getBoundingClientRect().top * -1;
         if ( currentTop < scrollPos) {
@@ -26,4 +26,15 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         scrollPos = currentTop;
     });
+    window.addEventListener('resize', function(){
+        if (window.innerWidth < 1400) {
+            mainNav.classList.remove('order-2');
+            mainNav.classList.remove('col-3');
+            mainNav.classList.add('col-12');
+        } else {
+            mainNav.classList.add('order-2');
+            mainNav.classList.add('col-3');
+            mainNav.classList.remove('col-12');
+        }
+    })
 })
